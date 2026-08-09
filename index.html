@@ -908,8 +908,8 @@ function App() {
     category: 'Salary',
     amount: '',
     currency: 'AED',
-    accountId: accounts[0]?.id || '',
-    toAccountId: accounts[1]?.id || accounts[0]?.id || '',
+    accountId: (accounts[0] ? accounts[0].id : '') || '',
+    toAccountId: (accounts[1] ? accounts[1].id : '') || (accounts[0] ? accounts[0].id : '') || '',
     weightGrams: '',
     purchasePriceAED: '',
     currentPriceAED: '',
@@ -1141,7 +1141,7 @@ function App() {
             };
             if (acc.id === oldTx.toAccountId) return {
               ...acc,
-              balance: acc.balance - (oldTx.toAmount ?? oldTx.amount)
+              balance: acc.balance - ((oldTx.toAmount != null ? oldTx.toAmount : oldTx.amount))
             };
             return acc;
           });
@@ -1183,7 +1183,7 @@ function App() {
         if (oldTx && oldTx.accountId) {
           // Reverse using the amount actually applied to the account at the time (accountAmount),
           // falling back to oldTx.amount for older records saved before this field existed.
-          const oldAccAmt = oldTx.accountAmount ?? oldTx.amount;
+          const oldAccAmt = (oldTx.accountAmount != null ? oldTx.accountAmount : oldTx.amount);
           accsWorking = accsWorking.map(acc => {
             if (acc.id === oldTx.accountId) {
               const revDelta = oldTx.type === 'income' ? -oldAccAmt : oldAccAmt;
@@ -1290,12 +1290,12 @@ function App() {
             };
             if (acc.id === tx.toAccountId) return {
               ...acc,
-              balance: acc.balance - (tx.toAmount ?? tx.amount)
+              balance: acc.balance - ((tx.toAmount != null ? tx.toAmount : tx.amount))
             };
             return acc;
           });
         } else if (tx.accountId) {
-          const accAmt = tx.accountAmount ?? tx.amount;
+          const accAmt = (tx.accountAmount != null ? tx.accountAmount : tx.amount);
           updatedAccs = accounts.map(acc => {
             if (acc.id === tx.accountId) {
               const revDelta = tx.type === 'income' ? -accAmt : accAmt;
@@ -1375,7 +1375,7 @@ function App() {
       const acc = accounts.find(a => a.id === t.accountId);
       return [t.date, t.title, t.type, t.category, t.amount, t.currency, acc ? acc.name : ''];
     });
-    const csv = [header, ...rows].map(r => r.map(v => `"${String(v ?? '').replace(/"/g, '""')}"`).join(',')).join('\n');
+    const csv = [header, ...rows].map(r => r.map(v => `"${String((v != null ? v : '')).replace(/"/g, '""')}"`).join(',')).join('\n');
     const blob = new Blob([csv], {
       type: 'text/csv'
     });
@@ -1479,7 +1479,7 @@ function App() {
   }, /*#__PURE__*/React.createElement("header", {
     className: `sticky top-0 z-40 backdrop-blur-xl border-b safe-top ${darkMode ? 'bg-zinc-900/80 border-zinc-800' : 'bg-white/80 border-zinc-200'}`
   }, /*#__PURE__*/React.createElement("div", {
-    className: "max-w-5xl mx-auto px-2.5 sm:px-4 h-16 flex items-center justify-between safe-x"
+    className: "max-w-5xl mx-auto px-4 h-16 flex items-center justify-between safe-x"
   }, /*#__PURE__*/React.createElement("div", {
     className: "flex items-center space-x-3"
   }, /*#__PURE__*/React.createElement("div", {
@@ -1554,7 +1554,7 @@ function App() {
   }) : /*#__PURE__*/React.createElement(IconMoon, {
     className: "w-4 h-4"
   }))))), /*#__PURE__*/React.createElement("main", {
-    className: "max-w-5xl mx-auto px-2.5 sm:px-4 py-5 sm:py-6 space-y-5 sm:space-y-6 flex-1 w-full safe-x"
+    className: "max-w-5xl mx-auto px-4 py-5 sm:py-6 space-y-5 sm:space-y-6 flex-1 w-full safe-x"
   }, activeTab === 'overview' && /*#__PURE__*/React.createElement("div", {
     className: "grid grid-cols-1 md:grid-cols-3 gap-6"
   }, /*#__PURE__*/React.createElement("div", {
@@ -1976,7 +1976,7 @@ function App() {
       onClick: () => {
         setRepaymentModalLoan(loan);
         setRepayAmount(outstanding.toString());
-        setRepayAccountId(accounts[0]?.id || '');
+        setRepayAccountId((accounts[0] ? accounts[0].id : '') || '');
       },
       className: "px-3 py-1.5 bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20 rounded-xl text-xs font-bold"
     }, "+ Record Repayment")));
@@ -2502,4 +2502,3 @@ root.render(/*#__PURE__*/React.createElement(App, null));
 </script>
 </body>
 </html>
-
