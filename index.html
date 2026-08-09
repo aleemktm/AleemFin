@@ -331,7 +331,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   .animate-fadeIn { animation: fadeIn 0.15s ease-out; }
   .safe-top { padding-top: env(safe-area-inset-top); }
   .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
-  .safe-x { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+  .safe-x { padding-left: max(1rem, env(safe-area-inset-left)); padding-right: max(1rem, env(safe-area-inset-right)); }
 </style>
 </head>
 <body>
@@ -2502,3 +2502,4 @@ root.render(/*#__PURE__*/React.createElement(App, null));
 </script>
 </body>
 </html>
+
