@@ -332,12 +332,19 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   .animate-fadeIn { animation: fadeIn 0.15s ease-out; }
   @keyframes contentEnter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes navPop { 0% { transform: scale(.88); } 70% { transform: scale(1.06); } 100% { transform: scale(1); } }
+  @keyframes greetingType { from { max-width: 0; opacity: .35; } to { max-width: 42rem; opacity: 1; } }
+  @keyframes heroGainFlash { 0%,100% { box-shadow: 0 24px 48px rgba(0,0,0,.28); } 40% { box-shadow: 0 0 0 4px rgba(16,185,129,.5), 0 24px 50px rgba(16,185,129,.35); } }
+  @keyframes heroLossFlash { 0%,100% { box-shadow: 0 24px 48px rgba(0,0,0,.28); } 40% { box-shadow: 0 0 0 4px rgba(244,63,94,.5), 0 24px 50px rgba(244,63,94,.35); } }
   main > * { animation: contentEnter .28s cubic-bezier(.2,.8,.2,1) both; }
   main button { transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease, color .16s ease, border-color .16s ease; }
   main button:active { transform: scale(.96); }
   main button.text-left:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.10); }
   nav button[class*="font-bold"] > div { animation: navPop .24s cubic-bezier(.2,.8,.2,1); }
   .h-1\.5 > div, .h-2 > div { transition: width .45s cubic-bezier(.2,.8,.2,1); }
+  html[data-greeting-typing="waiting"] main p.text-xs.font-semibold.text-zinc-400.px-1 { visibility: hidden; }
+  html[data-greeting-typing="ready"] main p.text-xs.font-semibold.text-zinc-400.px-1 { display: inline-block; max-width: 0; overflow: hidden; white-space: nowrap; vertical-align: top; animation: greetingType 1.15s steps(34,end) forwards; }
+  [data-hero-flash="gain"] { animation: heroGainFlash .9s ease-out !important; }
+  [data-hero-flash="loss"] { animation: heroLossFlash .9s ease-out !important; }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
   }
@@ -500,6 +507,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       }
     }, [settings.theme]);
     const [activeTab, setActiveTab] = useState("overview");
+    const [greetingTypingStarted, setGreetingTypingStarted] = useState(false);
+    const [heroFlash, setHeroFlash] = useState(null);
     const [currency, setCurrency] = useState(() => settings.defaultCurrency || "AED");
     const STORAGE_KEY = "aleemfin_data_v8";
     const loadStoredData = (key, fallback) => {
@@ -577,6 +586,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         return;
       }
       const newRates = { AED: 1, USD: usd, PKR: pkr };
+      flashHeroForRateUpdate(newRates);
       setExchangeRates(newRates);
       persistAllData(accounts, assets, loans, transactions, newRates);
       setRatesModalOpen(false);
@@ -638,6 +648,19 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     const [syncingGold, setSyncingGold] = useState(false);
     const [goldSyncMsg, setGoldSyncMsg] = useState("");
     const [liveGoldAEDPerGram, setLiveGoldAEDPerGram] = useState(null);
+    const netWorthWithRates = (rates) => {
+      const liquid = accounts.reduce((sum, account) => sum + account.balance * (rates[account.currency] || 1), 0);
+      const fixedAssets = assets.reduce((sum, asset) => sum + (asset.currentPriceAED || 0), 0);
+      const lent = loans.filter((loan) => loan.type === "lent").reduce((sum, loan) => sum + (loan.amount - (loan.repaid || 0)) * (rates[loan.currency] || 1), 0);
+      const borrowed = loans.filter((loan) => loan.type === "borrowed").reduce((sum, loan) => sum + (loan.amount - (loan.repaid || 0)) * (rates[loan.currency] || 1), 0);
+      return liquid + fixedAssets + lent - borrowed;
+    };
+    const flashHeroForRateUpdate = (nextRates) => setHeroFlash(netWorthWithRates(nextRates) >= netWorthWithRates(exchangeRates) ? "gain" : "loss");
+    const flashHeroForGoldRate = (nextRate) => {
+      const goldWeight = assets.filter((asset) => asset.category === "Gold" && asset.weightGrams).reduce((sum, asset) => sum + Number(asset.weightGrams), 0);
+      const savedGoldRate = goldWeight > 0 ? assets.filter((asset) => asset.category === "Gold" && asset.weightGrams).reduce((sum, asset) => sum + (asset.currentPriceAED || 0), 0) / goldWeight : 0;
+      setHeroFlash(nextRate >= (liveGoldAEDPerGram || savedGoldRate || nextRate) ? "gain" : "loss");
+    };
     const syncLiveExchangeRates = async () => {
       setSyncingRates(true);
       setRateSyncMsg("");
@@ -646,6 +669,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         const json = await res.json();
         if (!json || !json.rates || !json.rates.USD || !json.rates.PKR) throw new Error("bad response");
         const newRates = { AED: 1, USD: 1 / json.rates.USD, PKR: 1 / json.rates.PKR };
+        flashHeroForRateUpdate(newRates);
         setExchangeRates(newRates);
         setRateForm({ USD: newRates.USD.toFixed(4), PKR: newRates.PKR.toFixed(4) });
         persistAllData(accounts, assets, loans, transactions, newRates);
@@ -668,6 +692,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         if (!pricePerOzUSD) throw new Error("bad response");
         const aedPerUsd = rates.USD || 3.67;
         const aedPerGram = pricePerOzUSD * aedPerUsd / 31.1034768;
+        flashHeroForGoldRate(aedPerGram);
         setLiveGoldAEDPerGram(aedPerGram);
         setGoldSyncMsg(`Live 24k spot rate: AED ${aedPerGram.toFixed(2)} / gram`);
       } catch (err) {
@@ -680,7 +705,10 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     const applyLiveGoldRate = () => {
       if (!liveGoldAEDPerGram) return;
       saveStateToHistory();
+      const previousGoldValue = assets.filter((a) => a.category === "Gold").reduce((sum, a) => sum + (a.currentPriceAED || 0), 0);
       const updated = assets.map((a) => a.category === "Gold" && a.weightGrams ? { ...a, currentPriceAED: Math.round(a.weightGrams * liveGoldAEDPerGram) } : a);
+      const updatedGoldValue = updated.filter((a) => a.category === "Gold").reduce((sum, a) => sum + (a.currentPriceAED || 0), 0);
+      setHeroFlash(updatedGoldValue >= previousGoldValue ? "gain" : "loss");
       setAssets(updated);
       persistAllData(accounts, updated, loans, transactions);
       setGoldSyncMsg(`Applied AED ${liveGoldAEDPerGram.toFixed(2)}/gram to your gold holdings.`);
@@ -1363,6 +1391,26 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         selected.includes("spending") && /* @__PURE__ */ React.createElement(DashCard, { cardId: "spending", tabId: "analytics", icon: IconLedger, iconWrapCls: "bg-rose-500/20 text-rose-500", tintCls: "bg-rose-500/10 border-rose-500/20 hover:bg-rose-500/15 text-current", label: "Spending Pace", big: fmt(monthlyExpenseAED), bigCls: "text-rose-500", sub: `${currentMonthLabel} expenses` })
       );
     };
+    useEffect(() => {
+      const timer = window.setTimeout(() => setGreetingTypingStarted(true), 2000);
+      return () => window.clearTimeout(timer);
+    }, []);
+    useEffect(() => {
+      document.documentElement.dataset.greetingTyping = greetingTypingStarted ? "ready" : "waiting";
+      return () => delete document.documentElement.dataset.greetingTyping;
+    }, [greetingTypingStarted]);
+    useEffect(() => {
+      if (!heroFlash || activeTab !== "overview") return;
+      const timer = window.setTimeout(() => setHeroFlash(null), 950);
+      return () => window.clearTimeout(timer);
+    }, [activeTab, heroFlash]);
+    useEffect(() => {
+      document.querySelectorAll("[data-hero-flash]").forEach((node) => delete node.dataset.heroFlash);
+      if (activeTab !== "overview" || !heroFlash) return;
+      const heroMetric = [...document.querySelectorAll("main h2")].find((node) => (node.className || "").includes("text-3xl"));
+      const heroCard = heroMetric && heroMetric.closest("div.p-6.rounded-3xl");
+      if (heroCard) heroCard.dataset.heroFlash = heroFlash;
+    }, [activeTab, heroFlash]);
     useEffect(() => {
       document.querySelectorAll("[data-home-recurring-reminder]").forEach((node) => node.remove());
       if (activeTab !== "overview" || recurringReminders.length === 0) return;
