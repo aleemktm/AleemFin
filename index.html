@@ -330,6 +330,17 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   ::-webkit-scrollbar-thumb { background: rgba(120,120,120,0.4); border-radius: 8px; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   .animate-fadeIn { animation: fadeIn 0.15s ease-out; }
+  @keyframes contentEnter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes navPop { 0% { transform: scale(.88); } 70% { transform: scale(1.06); } 100% { transform: scale(1); } }
+  main > * { animation: contentEnter .28s cubic-bezier(.2,.8,.2,1) both; }
+  main button { transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease, color .16s ease, border-color .16s ease; }
+  main button:active { transform: scale(.96); }
+  main button.text-left:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.10); }
+  nav button[class*="font-bold"] > div { animation: navPop .24s cubic-bezier(.2,.8,.2,1); }
+  .h-1\.5 > div, .h-2 > div { transition: width .45s cubic-bezier(.2,.8,.2,1); }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  }
   .safe-top { padding-top: env(safe-area-inset-top); }
   .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
   .safe-x { padding-left: max(.5rem, env(safe-area-inset-left)) !important; padding-right: max(.5rem, env(safe-area-inset-right)) !important; }
