@@ -333,6 +333,12 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   .safe-top { padding-top: env(safe-area-inset-top); }
   .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
   .safe-x { padding-left: max(.5rem, env(safe-area-inset-left)) !important; padding-right: max(.5rem, env(safe-area-inset-right)) !important; }
+  header button[title="Backup (JSON)"], header label[title="Restore backup"] { display: none !important; }
+  button[title="Edit exchange rates"] { display: none !important; }
+  nav button svg { transform: scale(1.2); }
+  nav[class*="md:hidden"][class*="bottom-0"] { border-radius: 1.5rem 1.5rem 0 0; overflow: hidden; }
+  html:not(.dark) nav[class*="md:hidden"][class*="bottom-0"] { background: rgba(255,255,255,.96) !important; border-color: rgb(228,228,231) !important; }
+  html:not(.dark) nav[class*="md:hidden"][class*="bottom-0"] button:not([class*="text-"]) { color: rgb(113,113,122); }
 </style>
 </head>
 <body>
@@ -352,7 +358,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   var IconLedger = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("path", { d: "M6 3h9l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z" }), /* @__PURE__ */ React.createElement("path", { d: "M9 9h6M9 13h6M9 17h3" }));
   var IconAccounts = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("rect", { x: "3", y: "6", width: "18", height: "13", rx: "2" }), /* @__PURE__ */ React.createElement("path", { d: "M3 10h18" }), /* @__PURE__ */ React.createElement("path", { d: "M7 15h4" }));
   var IconVault = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("circle", { cx: "12", cy: "12", r: "9" }), /* @__PURE__ */ React.createElement("circle", { cx: "12", cy: "12", r: "3.2" }), /* @__PURE__ */ React.createElement("path", { d: "M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21" }));
-  var IconLoan = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("path", { d: "M12 2v20" }), /* @__PURE__ */ React.createElement("path", { d: "M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H7" }));
+  var IconLoan = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("path", { d: "M4 7h12" }), /* @__PURE__ */ React.createElement("path", { d: "m12 3 4 4-4 4" }), /* @__PURE__ */ React.createElement("rect", { x: "3", y: "13", width: "18", height: "7", rx: "2" }), /* @__PURE__ */ React.createElement("path", { d: "M7 16.5h4M16.5 16.5h.01" }));
   var IconAnalytics = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("path", { d: "M4 19V9M10 19V5M16 19v-7M21 19H3" }));
   var IconUndo = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("path", { d: "M9 14 4 9l5-5" }), /* @__PURE__ */ React.createElement("path", { d: "M4 9h10.5a5.5 5.5 0 0 1 0 11H11" }));
   var IconRedo = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("path", { d: "m15 14 5-5-5-5" }), /* @__PURE__ */ React.createElement("path", { d: "M20 9H9.5a5.5 5.5 0 0 0 0 11H13" }));
@@ -370,9 +376,14 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   var IconClose = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("path", { d: "M6 6l12 12M18 6 6 18" }));
   var IconRates = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("path", { d: "m7 8 4-4 4 4" }), /* @__PURE__ */ React.createElement("path", { d: "M11 4v9" }), /* @__PURE__ */ React.createElement("path", { d: "m17 16-4 4-4-4" }), /* @__PURE__ */ React.createElement("path", { d: "M13 20v-9" }));
   var IconWallet = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("path", { d: "M3 7a2 2 0 0 1 2-2h13a1 1 0 0 1 1 1v3" }), /* @__PURE__ */ React.createElement("rect", { x: "3", y: "7", width: "18", height: "13", rx: "2" }), /* @__PURE__ */ React.createElement("path", { d: "M16 13.5h2.5" }));
-  var IconInflow = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("path", { d: "M12 4v11" }), /* @__PURE__ */ React.createElement("path", { d: "m7 10 5 5 5-5" }), /* @__PURE__ */ React.createElement("path", { d: "M5 19h14" }));
+  var IconInflow = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("path", { d: "M12 4v16" }), /* @__PURE__ */ React.createElement("path", { d: "m6 14 6 6 6-6" }));
   var IconSync = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("path", { d: "M3 12a9 9 0 0 1 15-6.7L21 8" }), /* @__PURE__ */ React.createElement("path", { d: "M21 3v5h-5" }), /* @__PURE__ */ React.createElement("path", { d: "M21 12a9 9 0 0 1-15 6.7L3 16" }), /* @__PURE__ */ React.createElement("path", { d: "M3 21v-5h5" }));
   var IconMore = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("circle", { cx: "5", cy: "12", r: "1.5", fill: "currentColor", stroke: "none" }), /* @__PURE__ */ React.createElement("circle", { cx: "12", cy: "12", r: "1.5", fill: "currentColor", stroke: "none" }), /* @__PURE__ */ React.createElement("circle", { cx: "19", cy: "12", r: "1.5", fill: "currentColor", stroke: "none" }));
+  var IconSettings = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("circle", { cx: "12", cy: "12", r: "3" }), /* @__PURE__ */ React.createElement("path", { d: "M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.12 2.12-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.04 1.56V20.3h-3v-.08A1.7 1.7 0 0 0 10.66 18.7a1.7 1.7 0 0 0-1.88.34l-.06.06-2.12-2.12.06-.06A1.7 1.7 0 0 0 7 15.04 1.7 1.7 0 0 0 5.44 14H5.3v-3h.14A1.7 1.7 0 0 0 7 9.96a1.7 1.7 0 0 0-.34-1.88L6.6 8.02 8.72 5.9l.06.06A1.7 1.7 0 0 0 10.66 6.3a1.7 1.7 0 0 0 1.04-1.56V4.7h3v.04A1.7 1.7 0 0 0 15.74 6.3a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.12 2.12-.06.06A1.7 1.7 0 0 0 19.4 9.96 1.7 1.7 0 0 0 20.96 11h.14v3h-.14A1.7 1.7 0 0 0 19.4 15Z" }));
+  var IconTune = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("path", { d: "M4 7h5M14 7h6M4 17h9M18 17h2M4 12h2M11 12h9" }), /* @__PURE__ */ React.createElement("circle", { cx: "11", cy: "7", r: "2" }), /* @__PURE__ */ React.createElement("circle", { cx: "16", cy: "17", r: "2" }), /* @__PURE__ */ React.createElement("circle", { cx: "8", cy: "12", r: "2" }));
+  var IconTag = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("path", { d: "M20 13 13 20 4 11V4h7Z" }), /* @__PURE__ */ React.createElement("circle", { cx: "8.5", cy: "8.5", r: "1" }));
+  var IconTarget = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("circle", { cx: "12", cy: "12", r: "8" }), /* @__PURE__ */ React.createElement("circle", { cx: "12", cy: "12", r: "3" }), /* @__PURE__ */ React.createElement("path", { d: "m16 8 5-5M17 3h4v4" }));
+  var IconCalendar = ({ className }) => /* @__PURE__ */ React.createElement("svg", { className, ...iconBase }, /* @__PURE__ */ React.createElement("rect", { x: "3", y: "5", width: "18", height: "16", rx: "2" }), /* @__PURE__ */ React.createElement("path", { d: "M16 3v4M8 3v4M3 10h18" }), /* @__PURE__ */ React.createElement("path", { d: "m9 15 2 2 4-4" }));
 
   // src/app.jsx
   var { useState, useEffect, useMemo } = React;
@@ -404,10 +415,10 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     { id: "accounts", label: "Accounts", icon: IconAccounts },
     { id: "vault", label: "Assets", icon: IconVault },
     { id: "loans", label: "Loans", icon: IconLoan },
-    { id: "analytics", label: "Insights", icon: IconAnalytics }
-    // NOTE: a 'settings' tab is scaffolded (ACCENT_PALETTE, numFmt, dateFmt, heroMetric, etc. below
-    // all read from `settings`, defaulting to exactly today's behavior) but intentionally left out of
-    // NAV_ITEMS until the Settings screen itself is built \u2014 no dead-end tab in the meantime.
+    { id: "analytics", label: "Insights", icon: IconAnalytics },
+    { id: "planning", label: "Planning", icon: IconTarget },
+    { id: "recurring", label: "Recurring", icon: IconCalendar },
+    { id: "settings", label: "Settings", icon: IconTune }
   ];
   function App() {
     const SETTINGS_KEY = "aleemfin_settings_v1";
@@ -417,14 +428,12 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       heroMetric: "liquid",
       dashboardCards: ["accounts", "vault", "loans", "analytics"],
       hiddenDashboardCards: [],
+      liveRateSync: true,
       showGreeting: true,
       primaryNavIds: ["overview", "transactions", "accounts", "loans"],
       defaultCurrency: "AED",
       dateFormat: "YYYY-MM-DD",
       numberFormat: "comma",
-      pinEnabled: false,
-      pinHash: null,
-      autoLockMinutes: 5,
       customCategories: {
         income: ["Salary", "Freelance", "Gift", "Other"],
         expense: ["Groceries", "Family", "Rent", "Utilities", "Transport", "Dining", "Shopping", "Other"]
@@ -516,15 +525,26 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       { id: "t2", title: "Groceries", type: "expense", category: "Groceries", amount: 1200, currency: "AED", accountId: "1", date: "2026-08-03" },
       { id: "t3", title: "Wife Allowance", type: "expense", category: "Family", amount: 3e3, currency: "AED", accountId: "1", date: "2026-08-02" }
     ]));
+    const [budgets, setBudgets] = useState(() => loadStoredData("budgets", []));
+    const [goals, setGoals] = useState(() => loadStoredData("goals", []));
+    const [recurringItems, setRecurringItems] = useState(() => loadStoredData("recurringItems", []));
     const [storageError, setStorageError] = useState(false);
-    const persistAllData = (newAccs, newAsts, newLoans, newTxns, newRates) => {
+    const persistAllData = (newAccs, newAsts, newLoans, newTxns, newRates, newBudgets, newGoals, newRecurringItems) => {
       try {
+        let existing = {};
+        try {
+          existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}") || {};
+        } catch (e) {
+        }
         localStorage.setItem(STORAGE_KEY, JSON.stringify({
           accounts: newAccs,
           assets: newAsts,
           loans: newLoans,
           transactions: newTxns,
-          rates: newRates || exchangeRates
+          rates: newRates || exchangeRates,
+          budgets: newBudgets === void 0 ? Array.isArray(existing.budgets) ? existing.budgets : budgets : newBudgets,
+          goals: newGoals === void 0 ? Array.isArray(existing.goals) ? existing.goals : goals : newGoals,
+          recurringItems: newRecurringItems === void 0 ? Array.isArray(existing.recurringItems) ? existing.recurringItems : recurringItems : newRecurringItems
         }));
         if (storageError) setStorageError(false);
       } catch (e) {
@@ -588,9 +608,20 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     const [repayAmount, setRepayAmount] = useState("");
     const [repayAccountId, setRepayAccountId] = useState("");
     const [deleteTarget, setDeleteTarget] = useState(null);
+    const [loanView, setLoanView] = useState("lent");
     const [ledgerSearch, setLedgerSearch] = useState("");
     const [ledgerFilter, setLedgerFilter] = useState("all");
     const [moreSheetOpen, setMoreSheetOpen] = useState(false);
+    const [categoryManagerOpen, setCategoryManagerOpen] = useState(false);
+    const [categoryType, setCategoryType] = useState("expense");
+    const [categoryName, setCategoryName] = useState("");
+    const [dangerAction, setDangerAction] = useState(null);
+    const [dangerPhrase, setDangerPhrase] = useState("");
+    const [planningEditor, setPlanningEditor] = useState(null);
+    const [budgetForm, setBudgetForm] = useState({ id: null, category: "Groceries", amount: "", currency: "AED" });
+    const [goalForm, setGoalForm] = useState({ id: null, name: "", targetAmount: "", currentAmount: "", currency: "AED", targetDate: "" });
+    const [recurringEditor, setRecurringEditor] = useState(null);
+    const [recurringForm, setRecurringForm] = useState({ id: null, type: "expense", title: "", amount: "", currency: "AED", accountId: "", category: "Groceries", frequency: "monthly", nextDate: todayISO() });
     const [syncingRates, setSyncingRates] = useState(false);
     const [rateSyncMsg, setRateSyncMsg] = useState("");
     const [syncingGold, setSyncingGold] = useState(false);
@@ -608,13 +639,15 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         setRateForm({ USD: newRates.USD.toFixed(4), PKR: newRates.PKR.toFixed(4) });
         persistAllData(accounts, assets, loans, transactions, newRates);
         setRateSyncMsg("Synced live rates just now.");
+        return newRates;
       } catch (err) {
         setRateSyncMsg("Couldn't fetch live rates \u2014 check your internet connection and try again.");
+        return exchangeRates;
       } finally {
         setSyncingRates(false);
       }
     };
-    const syncLiveGoldRate = async () => {
+    const syncLiveGoldRate = async (rates = exchangeRates) => {
       setSyncingGold(true);
       setGoldSyncMsg("");
       try {
@@ -622,7 +655,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         const json = await res.json();
         const pricePerOzUSD = json && json.price;
         if (!pricePerOzUSD) throw new Error("bad response");
-        const aedPerUsd = exchangeRates.USD || 3.67;
+        const aedPerUsd = rates.USD || 3.67;
         const aedPerGram = pricePerOzUSD * aedPerUsd / 31.1034768;
         setLiveGoldAEDPerGram(aedPerGram);
         setGoldSyncMsg(`Live 24k spot rate: AED ${aedPerGram.toFixed(2)} / gram`);
@@ -642,91 +675,12 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       setGoldSyncMsg(`Applied AED ${liveGoldAEDPerGram.toFixed(2)}/gram to your gold holdings.`);
     };
     const refreshLiveRates = async () => {
-      await syncLiveExchangeRates();
-      await syncLiveGoldRate();
+      const freshRates = await syncLiveExchangeRates();
+      await syncLiveGoldRate(freshRates);
     };
     useEffect(() => {
-      refreshLiveRates();
-    }, []);
-    const simpleHash = (str) => {
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) hash = hash * 31 + str.charCodeAt(i) >>> 0;
-      return hash.toString(36);
-    };
-    const [locked, setLocked] = useState(() => settings.pinEnabled === true);
-    const [pinEntry, setPinEntry] = useState("");
-    const [pinError, setPinError] = useState(false);
-    useEffect(() => {
-      if (!settings.pinEnabled) return;
-      let hiddenAt = null;
-      const handleVisibility = () => {
-        if (document.hidden) {
-          hiddenAt = Date.now();
-        } else if (hiddenAt && settings.autoLockMinutes > 0) {
-          const elapsedMin = (Date.now() - hiddenAt) / 6e4;
-          if (elapsedMin >= settings.autoLockMinutes) setLocked(true);
-        }
-      };
-      document.addEventListener("visibilitychange", handleVisibility);
-      return () => document.removeEventListener("visibilitychange", handleVisibility);
-    }, [settings.pinEnabled, settings.autoLockMinutes]);
-    const handlePinKey = (digit) => {
-      if (pinEntry.length >= 6) return;
-      const next = pinEntry + digit;
-      setPinEntry(next);
-      setPinError(false);
-      if (next.length >= 4) {
-        if (simpleHash(next) === settings.pinHash) {
-          setLocked(false);
-          setPinEntry("");
-        } else if (next.length === 6) {
-          setPinError(true);
-          setTimeout(() => setPinEntry(""), 400);
-        }
-      }
-    };
-    const handlePinBackspace = () => setPinEntry((p) => p.slice(0, -1));
-    const disableLockFromForgot = () => {
-      if (!window.confirm("This removes your PIN lock (your financial data itself is unaffected). Continue?")) return;
-      updateSettings({ pinEnabled: false, pinHash: null });
-      setLocked(false);
-      setPinEntry("");
-    };
-    const [pinModalMode, setPinModalMode] = useState(null);
-    const [pinModalForm, setPinModalForm] = useState({ current: "", next: "", confirm: "" });
-    const [pinModalError, setPinModalError] = useState("");
-    const openPinModal = (mode) => {
-      setPinModalMode(mode);
-      setPinModalForm({ current: "", next: "", confirm: "" });
-      setPinModalError("");
-    };
-    const submitPinModal = (e) => {
-      e.preventDefault();
-      const isNumeric4to6 = (v) => /^\d{4,6}$/.test(v);
-      if (pinModalMode === "disable") {
-        if (simpleHash(pinModalForm.current) !== settings.pinHash) {
-          setPinModalError("Incorrect current PIN.");
-          return;
-        }
-        updateSettings({ pinEnabled: false, pinHash: null });
-        setPinModalMode(null);
-        return;
-      }
-      if (pinModalMode === "change" && simpleHash(pinModalForm.current) !== settings.pinHash) {
-        setPinModalError("Incorrect current PIN.");
-        return;
-      }
-      if (!isNumeric4to6(pinModalForm.next)) {
-        setPinModalError("PIN must be 4\u20136 digits.");
-        return;
-      }
-      if (pinModalForm.next !== pinModalForm.confirm) {
-        setPinModalError("PINs don't match.");
-        return;
-      }
-      updateSettings({ pinEnabled: true, pinHash: simpleHash(pinModalForm.next) });
-      setPinModalMode(null);
-    };
+      if (settings.liveRateSync !== false) refreshLiveRates();
+    }, [settings.liveRateSync]);
     const getDefaultFormInput = (overrides = {}) => ({
       title: "",
       category: "Salary",
@@ -786,6 +740,11 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     };
     const totalLiquidAED = accounts.reduce((acc, item) => acc + convertToAED(item.balance, item.currency), 0);
     const totalPhysicalAED = assets.reduce((acc, item) => acc + (item.currentPriceAED || 0), 0);
+    const goldAssets = assets.filter((item) => item.category === "Gold");
+    const goldPurchaseAED = goldAssets.reduce((acc, item) => acc + (item.purchasePriceAED || 0), 0);
+    const goldCurrentAED = goldAssets.reduce((acc, item) => acc + (item.currentPriceAED || 0), 0);
+    const goldChangeAED = goldCurrentAED - goldPurchaseAED;
+    const goldChangePct = goldPurchaseAED > 0 ? goldChangeAED / goldPurchaseAED * 100 : null;
     const totalLoansLentAED = loans.filter((l) => l.type === "lent").reduce((acc, l) => acc + convertToAED(l.amount - (l.repaid || 0), l.currency), 0);
     const totalLoansBorrowedAED = loans.filter((l) => l.type === "borrowed").reduce((acc, l) => acc + convertToAED(l.amount - (l.repaid || 0), l.currency), 0);
     const netWorthWithoutFixedAssets = totalLiquidAED + totalLoansLentAED - totalLoansBorrowedAED;
@@ -794,6 +753,10 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     const currentMonthPrefix = toLocalISO(now).slice(0, 7);
     const currentMonthLabel = now.toLocaleString("en-US", { month: "long", year: "numeric" });
     const todayStr = todayISO();
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowStr = toLocalISO(tomorrow);
+    const recurringReminders = recurringItems.filter((item) => item.active && item.nextDate === tomorrowStr && !(item.reminderDoneDates || []).includes(tomorrowStr));
     const monthlyTransactions = transactions.filter((t) => t.date && t.date.startsWith(currentMonthPrefix));
     const monthlyIncomeAED = monthlyTransactions.filter((t) => t.type === "income").reduce((acc, t) => acc + convertTxToAED(t), 0);
     const monthlyExpenseAED = monthlyTransactions.filter((t) => t.type === "expense").reduce((acc, t) => acc + convertTxToAED(t), 0);
@@ -816,12 +779,18 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
     const getLastInflow = (accId) => {
       const inflows = transactions.filter((t) => t.type === "income" && t.accountId === accId || t.type === "transfer" && t.toAccountId === accId);
       if (inflows.length === 0) return null;
-      return inflows.slice().sort((a, b) => (b.date || "").localeCompare(a.date || ""))[0];
+      const latest = inflows.slice().sort((a, b) => (b.date || "").localeCompare(a.date || ""))[0];
+      const cutoff = new Date();
+      cutoff.setDate(cutoff.getDate() - 30);
+      return latest.date >= toLocalISO(cutoff) ? latest : null;
     };
     const getLastOutflow = (accId) => {
       const outflows = transactions.filter((t) => t.type === "expense" && t.accountId === accId || t.type === "transfer" && t.accountId === accId);
       if (outflows.length === 0) return null;
-      return outflows.slice().sort((a, b) => (b.date || "").localeCompare(a.date || ""))[0];
+      const latest = outflows.slice().sort((a, b) => (b.date || "").localeCompare(a.date || ""))[0];
+      const cutoff = new Date();
+      cutoff.setDate(cutoff.getDate() - 30);
+      return latest.date >= toLocalISO(cutoff) ? latest : null;
     };
     const describeAccountMovement = (tx, acc) => {
       if (tx.type === "transfer") {
@@ -1072,7 +1041,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       setDeleteTarget({ type: "account", id: acc.id, name: acc.name, extra: linkedCount > 0 ? `This will also remove ${linkedCount} linked transaction${linkedCount > 1 ? "s" : ""}.` : null });
     };
     const exportBackup = () => {
-      const data = { accounts, assets, loans, transactions };
+      const data = { version: 2, createdAt: (/* @__PURE__ */ new Date()).toISOString(), accounts, assets, loans, transactions, rates: exchangeRates, budgets, goals, recurringItems, settings };
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -1102,7 +1071,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
         try {
           const parsed = JSON.parse(event.target.result);
           if (!parsed.accounts || !parsed.transactions) throw new Error("Invalid structure");
-          if (!window.confirm("This will replace all current data with the backup file. Continue? (You can Undo right after if needed.)")) {
+          if (!window.confirm("Restore this backup? It will replace the accounts, transactions, loans, assets and exchange rates currently stored on this device.")) {
             e.target.value = "";
             return;
           }
@@ -1112,14 +1081,177 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
           if (parsed.loans) setLoans(parsed.loans);
           setTransactions(parsed.transactions);
           if (parsed.rates) setExchangeRates(parsed.rates);
-          persistAllData(parsed.accounts, parsed.assets || assets, parsed.loans || loans, parsed.transactions, parsed.rates || exchangeRates);
-          alert("Backup successfully restored!");
+          setBudgets(Array.isArray(parsed.budgets) ? parsed.budgets : []);
+          setGoals(Array.isArray(parsed.goals) ? parsed.goals : []);
+          setRecurringItems(Array.isArray(parsed.recurringItems) ? parsed.recurringItems : []);
+          if (parsed.settings) updateSettings({ ...parsed.settings, customCategories: { ...DEFAULT_SETTINGS.customCategories, ...parsed.settings.customCategories || {} } });
+          if (parsed.settings && parsed.settings.defaultCurrency) setCurrency(parsed.settings.defaultCurrency);
+          persistAllData(parsed.accounts, parsed.assets || assets, parsed.loans || loans, parsed.transactions, parsed.rates || exchangeRates, Array.isArray(parsed.budgets) ? parsed.budgets : [], Array.isArray(parsed.goals) ? parsed.goals : [], Array.isArray(parsed.recurringItems) ? parsed.recurringItems : []);
+          alert("Backup restored successfully.");
         } catch (err) {
           alert("Invalid or corrupted backup file.");
         }
       };
       reader.readAsText(file);
       e.target.value = "";
+    };
+    const persistPlanning = (nextBudgets = budgets, nextGoals = goals, nextRecurringItems = recurringItems) => {
+      persistAllData(accounts, assets, loans, transactions, exchangeRates, nextBudgets, nextGoals, nextRecurringItems);
+    };
+    const advanceRecurringDate = (date, frequency) => {
+      const next = new Date(`${date}T12:00:00`);
+      if (frequency === "weekly") next.setDate(next.getDate() + 7);
+      else if (frequency === "yearly") next.setFullYear(next.getFullYear() + 1);
+      else next.setMonth(next.getMonth() + 1);
+      return toLocalISO(next);
+    };
+    const openBudgetEditor = (budget = null) => {
+      setBudgetForm(budget ? { id: budget.id, category: budget.category, amount: String(budget.amount), currency: budget.currency } : { id: null, category: (settings.customCategories.expense || ["Groceries"])[0] || "Groceries", amount: "", currency });
+      setPlanningEditor("budget");
+    };
+    const saveBudget = (e) => {
+      e.preventDefault();
+      const amount = Number(budgetForm.amount);
+      if (!budgetForm.category.trim() || !(amount > 0)) {
+        alert("Choose a category and enter a positive monthly budget.");
+        return;
+      }
+      const budget = { id: budgetForm.id || `budget_${Date.now()}`, category: budgetForm.category.trim(), amount, currency: budgetForm.currency };
+      const updated = budgetForm.id ? budgets.map((item) => item.id === budgetForm.id ? budget : item) : [...budgets, budget];
+      setBudgets(updated);
+      persistPlanning(updated, goals, recurringItems);
+      setPlanningEditor(null);
+    };
+    const deleteBudget = (budget) => {
+      if (!window.confirm(`Remove the ${budget.category} budget? This does not affect transactions or balances.`)) return;
+      const updated = budgets.filter((item) => item.id !== budget.id);
+      setBudgets(updated);
+      persistPlanning(updated, goals, recurringItems);
+    };
+    const openGoalEditor = (goal = null) => {
+      setGoalForm(goal ? { id: goal.id, name: goal.name, targetAmount: String(goal.targetAmount), currentAmount: String(goal.currentAmount), currency: goal.currency, targetDate: goal.targetDate || "" } : { id: null, name: "", targetAmount: "", currentAmount: "", currency, targetDate: "" });
+      setPlanningEditor("goal");
+    };
+    const saveGoal = (e) => {
+      e.preventDefault();
+      const targetAmount = Number(goalForm.targetAmount);
+      const currentAmount = Number(goalForm.currentAmount) || 0;
+      if (!goalForm.name.trim() || !(targetAmount > 0) || currentAmount < 0) {
+        alert("Enter a goal name, a positive target, and a valid current amount.");
+        return;
+      }
+      const goal = { id: goalForm.id || `goal_${Date.now()}`, name: goalForm.name.trim(), targetAmount, currentAmount, currency: goalForm.currency, targetDate: goalForm.targetDate || "" };
+      const updated = goalForm.id ? goals.map((item) => item.id === goalForm.id ? goal : item) : [...goals, goal];
+      setGoals(updated);
+      persistPlanning(budgets, updated, recurringItems);
+      setPlanningEditor(null);
+    };
+    const deleteGoal = (goal) => {
+      if (!window.confirm(`Remove “${goal.name}”? This does not affect transactions or balances.`)) return;
+      const updated = goals.filter((item) => item.id !== goal.id);
+      setGoals(updated);
+      persistPlanning(budgets, updated, recurringItems);
+    };
+    const openRecurringEditor = (item = null) => {
+      setRecurringForm(item ? { id: item.id, type: item.type, title: item.title, amount: String(item.amount), currency: item.currency, accountId: item.accountId, category: item.category, frequency: item.frequency, nextDate: item.nextDate } : { id: null, type: "expense", title: "", amount: "", currency, accountId: (accounts[0] || {}).id || "", category: (settings.customCategories.expense || ["Groceries"])[0] || "Groceries", frequency: "monthly", nextDate: todayISO() });
+      setRecurringEditor(true);
+    };
+    const saveRecurringItem = (e) => {
+      e.preventDefault();
+      const amount = Number(recurringForm.amount);
+      if (!recurringForm.title.trim() || !(amount > 0) || !recurringForm.accountId || !recurringForm.category.trim() || !recurringForm.nextDate) {
+        alert("Complete the title, amount, account, category, and next date.");
+        return;
+      }
+      const existing = recurringItems.find((item) => item.id === recurringForm.id);
+      const item = { id: recurringForm.id || `recurring_${Date.now()}`, type: recurringForm.type, title: recurringForm.title.trim(), amount, currency: recurringForm.currency, accountId: recurringForm.accountId, category: recurringForm.category.trim(), frequency: recurringForm.frequency, nextDate: recurringForm.nextDate, active: existing ? existing.active : true, recordedDates: existing ? existing.recordedDates || [] : [], reminderDoneDates: existing ? existing.reminderDoneDates || [] : [] };
+      const updated = existing ? recurringItems.map((entry) => entry.id === item.id ? item : entry) : [...recurringItems, item];
+      setRecurringItems(updated);
+      persistPlanning(budgets, goals, updated);
+      setRecurringEditor(null);
+    };
+    const updateRecurringItem = (item, partial) => {
+      const updated = recurringItems.map((entry) => entry.id === item.id ? { ...entry, ...partial } : entry);
+      setRecurringItems(updated);
+      persistPlanning(budgets, goals, updated);
+    };
+    const markRecurringReminderDone = (item) => {
+      const updated = recurringItems.map((entry) => entry.id === item.id ? { ...entry, reminderDoneDates: [...new Set([...(entry.reminderDoneDates || []), tomorrowStr])] } : entry);
+      setRecurringItems(updated);
+      persistPlanning(budgets, goals, updated);
+    };
+    const deleteRecurringItem = (item) => {
+      if (!window.confirm(`Delete the “${item.title}” schedule? Previously recorded transactions will remain unchanged.`)) return;
+      const updated = recurringItems.filter((entry) => entry.id !== item.id);
+      setRecurringItems(updated);
+      persistPlanning(budgets, goals, updated);
+    };
+    const recordRecurringOccurrence = (item) => {
+      const date = item.nextDate;
+      if ((item.recordedDates || []).includes(date)) {
+        alert("This occurrence has already been recorded.");
+        return;
+      }
+      const account = accounts.find((entry) => entry.id === item.accountId);
+      if (!account) {
+        alert("Choose a valid account before recording this occurrence.");
+        return;
+      }
+      saveStateToHistory();
+      const accountAmount = convertFromAED(convertToAED(item.amount, item.currency), account.currency);
+      const updatedAccounts = accounts.map((entry) => entry.id === account.id ? { ...entry, balance: entry.balance + (item.type === "income" ? accountAmount : -accountAmount) } : entry);
+      const transaction = { id: `rec_tx_${Date.now()}`, title: item.title, type: item.type, category: item.category, amount: item.amount, currency: item.currency, rateToAED: exchangeRates[item.currency] || 1, accountAmount, accountId: account.id, date, recurringId: item.id, recurringDate: date };
+      const updatedTransactions = [transaction, ...transactions];
+      const updatedRecurring = recurringItems.map((entry) => entry.id === item.id ? { ...entry, nextDate: advanceRecurringDate(date, item.frequency), recordedDates: [...(entry.recordedDates || []), date] } : entry);
+      setAccounts(updatedAccounts);
+      setTransactions(updatedTransactions);
+      setRecurringItems(updatedRecurring);
+      persistAllData(updatedAccounts, assets, loans, updatedTransactions, exchangeRates, budgets, goals, updatedRecurring);
+    };
+    const addCategory = (e) => {
+      e.preventDefault();
+      const name = categoryName.trim();
+      if (!name) return;
+      const existing = settings.customCategories[categoryType] || [];
+      if (existing.some((item) => item.toLowerCase() === name.toLowerCase())) {
+        alert("That category already exists.");
+        return;
+      }
+      updateSettings({ customCategories: { ...settings.customCategories, [categoryType]: [...existing, name] } });
+      setCategoryName("");
+    };
+    const removeCategory = (type, name) => {
+      if (!window.confirm(`Remove “${name}” from ${type} categories? Existing transactions will keep their category.`)) return;
+      updateSettings({ customCategories: { ...settings.customCategories, [type]: (settings.customCategories[type] || []).filter((item) => item !== name) } });
+    };
+    const openDangerAction = (action) => {
+      setDangerAction(action);
+      setDangerPhrase("");
+    };
+    const confirmDangerAction = () => {
+      if (!dangerAction || dangerPhrase !== (dangerAction === "reset" ? "RESET" : "CLEAR")) return;
+      const emptyData = { accounts: [], assets: [], loans: [], transactions: [], rates: { AED: 1, USD: 3.67, PKR: 0.013 }, budgets: [], goals: [], recurringItems: [] };
+      setAccounts(emptyData.accounts);
+      setAssets(emptyData.assets);
+      setLoans(emptyData.loans);
+      setTransactions(emptyData.transactions);
+      setExchangeRates(emptyData.rates);
+      setBudgets(emptyData.budgets);
+      setGoals(emptyData.goals);
+      setRecurringItems(emptyData.recurringItems);
+      setHistory([]);
+      setRedoStack([]);
+      if (dangerAction === "clear") {
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(SETTINGS_KEY);
+        setSettings(DEFAULT_SETTINGS);
+        setCurrency(DEFAULT_SETTINGS.defaultCurrency);
+      } else {
+        persistAllData(emptyData.accounts, emptyData.assets, emptyData.loans, emptyData.transactions, emptyData.rates, emptyData.budgets, emptyData.goals, emptyData.recurringItems);
+      }
+      setDangerAction(null);
+      setDangerPhrase("");
+      setActiveTab("overview");
     };
     const inputCls = `w-full px-3 py-2 rounded-xl text-[16px] border outline-none ${darkMode ? "bg-zinc-950 border-zinc-800 text-zinc-100" : "bg-zinc-50 border-zinc-200 text-zinc-900"}`;
     const cardCls = `rounded-3xl border ${darkMode ? "bg-zinc-900/50 border-zinc-800" : "bg-white border-zinc-200"}`;
@@ -1128,15 +1260,196 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       const isTransfer = tx.type === "transfer";
       return /* @__PURE__ */ React.createElement("div", { key: tx.id, className: `p-3.5 rounded-2xl border flex justify-between items-center text-xs ${subCardCls}` }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement("span", { className: `px-2 py-0.5 rounded text-[9px] font-bold uppercase ${tx.type === "income" ? "bg-emerald-500/10 text-emerald-500" : tx.type === "expense" ? "bg-rose-500/10 text-rose-500" : "bg-blue-500/10 text-blue-500"}` }, tx.category), /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-zinc-400" }, dateFmt(tx.date))), /* @__PURE__ */ React.createElement("p", { className: "font-bold mt-1 text-sm" }, tx.title)), /* @__PURE__ */ React.createElement("div", { className: "flex items-center space-x-2" }, /* @__PURE__ */ React.createElement("span", { className: `font-bold text-sm ${tx.type === "income" ? "text-emerald-500" : tx.type === "expense" ? "text-rose-500" : "text-blue-500"}` }, tx.type === "income" ? "+" : tx.type === "expense" ? "-" : "", tx.currency, " ", numFmt(tx.amount)), !isTransfer && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("button", { onClick: () => openEditModal(tx.type, tx), title: "Edit", className: "p-2 -m-0.5 rounded-xl text-zinc-400 hover:text-emerald-500 hover:bg-emerald-500/10 active:scale-95" }, /* @__PURE__ */ React.createElement(IconEdit, { className: "w-4 h-4" })), /* @__PURE__ */ React.createElement("button", { onClick: () => setDeleteTarget({ type: "transaction", id: tx.id, name: tx.title }), title: "Delete", className: "p-2 -m-0.5 rounded-xl text-zinc-400 hover:text-rose-500 hover:bg-rose-500/10 active:scale-95" }, /* @__PURE__ */ React.createElement(IconTrash, { className: "w-4 h-4" })))));
     };
-    const DashCard = ({ tabId, icon: Icon, iconWrapCls, tintCls, label, big, bigCls, sub, chip, chipCls }) => /* @__PURE__ */ React.createElement(
-      "button",
-      {
-        onClick: () => setActiveTab(tabId),
-        className: `text-left p-4 rounded-3xl border shadow-sm active:scale-[0.97] transition-transform flex flex-col gap-2 ${tintCls}`
-      },
-      /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ React.createElement("div", { className: `w-8 h-8 rounded-xl flex items-center justify-center ${iconWrapCls}` }, /* @__PURE__ */ React.createElement(Icon, { className: "w-4 h-4" })), /* @__PURE__ */ React.createElement(IconChevron, { className: "w-3.5 h-3.5 opacity-50" })),
-      /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { className: "text-[10px] font-bold uppercase tracking-wider opacity-60 block" }, label), /* @__PURE__ */ React.createElement("span", { className: `font-extrabold text-base leading-tight block mt-0.5 ${bigCls}` }, big), sub && /* @__PURE__ */ React.createElement("span", { className: "text-[10px] opacity-70 mt-0.5 block" }, sub), chip && /* @__PURE__ */ React.createElement("span", { className: `inline-block mt-1 text-[10px] font-bold px-1.5 py-0.5 rounded ${chipCls}` }, chip))
-    );
+    const renderInsightSummary = () => {
+      const h = React.createElement;
+      const topCategory = categoryBreakdown[0];
+      return h("div", { className: `p-4 ${cardCls} max-w-xl mx-auto w-full` }, h("div", { className: "grid grid-cols-2 gap-3 text-xs" }, h("div", null, h("p", { className: "text-[10px] font-bold uppercase tracking-wider text-zinc-500" }, "Top category"), h("p", { className: "font-bold mt-1" }, topCategory ? topCategory[0] : "No expenses yet"), topCategory && h("p", { className: "text-[10px] text-rose-500 mt-0.5" }, fmt(topCategory[1]))), h("div", null, h("p", { className: "text-[10px] font-bold uppercase tracking-wider text-zinc-500" }, "Biggest expense"), h("p", { className: "font-bold mt-1" }, biggestExpenseThisMonth ? biggestExpenseThisMonth.title : "No expenses yet"), biggestExpenseThisMonth && h("p", { className: "text-[10px] text-rose-500 mt-0.5" }, fmt(biggestExpenseThisMonth.aed)))));
+    };
+    const renderPlanning = () => {
+      const h = React.createElement;
+      const expenseCategories = settings.customCategories.expense || ["Groceries"];
+      const budgetSpent = (budget) => convertFromAED(monthlyTransactions.filter((tx) => tx.type === "expense" && (tx.category || "").toLowerCase() === budget.category.toLowerCase()).reduce((sum, tx) => sum + convertTxToAED(tx), 0), budget.currency);
+      const goalMonthlyNeed = (goal) => {
+        if (!goal.targetDate || goal.currentAmount >= goal.targetAmount) return null;
+        const months = Math.max(1, Math.ceil((new Date(`${goal.targetDate}T12:00:00`).getTime() - new Date().getTime()) / (30.44 * 864e5)));
+        return { months, amount: Math.max(0, goal.targetAmount - goal.currentAmount) / months };
+      };
+      return h("div", { className: "space-y-6 max-w-xl mx-auto w-full" },
+        h("div", { className: "flex items-start justify-between px-1 gap-3" }, h("div", null, h("h2", { className: `text-sm font-bold uppercase tracking-wider ${accent.textStrong}` }, "Planning"), h("p", { className: "text-xs text-zinc-400 mt-1" }, `Simple plans for ${currentMonthLabel}. They never change your balances.`))),
+        h("section", { className: "space-y-3" }, h("div", { className: "flex items-center justify-between px-1" }, h("h3", { className: "text-[10px] font-bold uppercase tracking-wider text-zinc-500" }, "Monthly budgets"), h("button", { onClick: () => openBudgetEditor(), className: `px-3 py-1.5 rounded-xl text-xs font-bold ${accent.solidBtn} text-white` }, "+ Add budget")),
+          budgets.length === 0 && !planningEditor && h("div", { className: `p-6 text-center ${cardCls}` }, h("p", { className: "text-xs font-semibold" }, "Set a spending limit for a category."), h("p", { className: "text-[10px] text-zinc-400 mt-1" }, "Budgets are only a guide—transactions remain unchanged.")),
+          planningEditor === "budget" && h("form", { onSubmit: saveBudget, className: `p-4 ${cardCls} space-y-3` }, h("div", { className: "flex justify-between items-center" }, h("h4", { className: "font-bold text-sm" }, budgetForm.id ? "Edit budget" : "New monthly budget"), h("button", { type: "button", onClick: () => setPlanningEditor(null), className: "p-1 text-zinc-400" }, h(IconClose, { className: "w-4 h-4" }))), h("div", { className: "grid grid-cols-2 gap-3" }, h("div", null, h("label", { className: "block text-[11px] font-medium mb-1" }, "Category"), h("select", { value: budgetForm.category, onChange: (e) => setBudgetForm({ ...budgetForm, category: e.target.value }), className: inputCls }, expenseCategories.map((name) => h("option", { key: name, value: name }, name)))), h("div", null, h("label", { className: "block text-[11px] font-medium mb-1" }, "Monthly budget"), h("input", { type: "number", inputMode: "decimal", min: "0.01", step: "0.01", required: true, value: budgetForm.amount, onChange: (e) => setBudgetForm({ ...budgetForm, amount: e.target.value }), className: inputCls }))), h("div", { className: "flex justify-end gap-2 pt-1" }, h("button", { type: "button", onClick: () => setPlanningEditor(null), className: "px-3 py-2 rounded-xl text-xs font-bold text-zinc-400" }, "Cancel"), h("button", { type: "submit", className: `px-3 py-2 rounded-xl text-xs font-bold ${accent.solidBtn} text-white` }, "Save budget"))),
+          h("div", { className: "space-y-2" }, budgets.map((budget) => { const spent = budgetSpent(budget); const remaining = budget.amount - spent; const progress = Math.min(100, Math.round(spent / budget.amount * 100)); const status = progress >= 100 ? "text-rose-500" : progress >= 80 ? "text-amber-500" : accent.textStrong; const bar = progress >= 100 ? "bg-rose-500" : progress >= 80 ? "bg-amber-500" : accent.swatch; return h("div", { key: budget.id, className: `p-4 ${subCardCls} space-y-3` }, h("div", { className: "flex items-start justify-between gap-2" }, h("div", null, h("h4", { className: "text-sm font-bold" }, budget.category), h("p", { className: `text-[10px] font-semibold mt-0.5 ${status}` }, progress >= 100 ? "Over budget" : progress >= 80 ? "Almost at budget" : "On track")), h("div", { className: "flex gap-1" }, h("button", { onClick: () => openBudgetEditor(budget), title: "Edit budget", className: "p-1.5 text-zinc-400 hover:text-emerald-500" }, h(IconEdit, { className: "w-3.5 h-3.5" })), h("button", { onClick: () => deleteBudget(budget), title: "Remove budget", className: "p-1.5 text-zinc-400 hover:text-rose-500" }, h(IconTrash, { className: "w-3.5 h-3.5" })))), h("div", { className: "flex justify-between text-xs" }, h("span", { className: "text-zinc-400" }, "Budget ", h("strong", { className: darkMode ? "text-zinc-100" : "text-zinc-800" }, `${budget.currency} ${numFmt(budget.amount)}`)), h("span", { className: status }, "Spent ", `${budget.currency} ${numFmt(spent)}`)), h("div", { className: "h-2 rounded-full overflow-hidden bg-zinc-800/20" }, h("div", { className: `${bar} h-full transition-all`, style: { width: `${progress}%` } })), h("div", { className: "flex justify-between text-[10px] text-zinc-400" }, h("span", null, `${progress}% used`), h("span", { className: remaining < 0 ? "text-rose-500 font-bold" : "" }, remaining < 0 ? `${budget.currency} ${numFmt(Math.abs(remaining))} over` : `${budget.currency} ${numFmt(remaining)} remaining`))); }))),
+        h("section", { className: "space-y-3" }, h("div", { className: "flex items-center justify-between px-1" }, h("h3", { className: "text-[10px] font-bold uppercase tracking-wider text-zinc-500" }, "Savings goals"), h("button", { onClick: () => openGoalEditor(), className: `px-3 py-1.5 rounded-xl text-xs font-bold ${accent.solidBtn} text-white` }, "+ Add goal")),
+          goals.length === 0 && planningEditor !== "goal" && h("div", { className: `p-6 text-center ${cardCls}` }, h("p", { className: "text-xs font-semibold" }, "Plan for the things that matter."), h("p", { className: "text-[10px] text-zinc-400 mt-1" }, "Try an emergency fund, travel, or a major purchase.")),
+          planningEditor === "goal" && h("form", { onSubmit: saveGoal, className: `p-4 ${cardCls} space-y-3` }, h("div", { className: "flex justify-between items-center" }, h("h4", { className: "font-bold text-sm" }, goalForm.id ? "Edit goal" : "New savings goal"), h("button", { type: "button", onClick: () => setPlanningEditor(null), className: "p-1 text-zinc-400" }, h(IconClose, { className: "w-4 h-4" }))), h("div", null, h("label", { className: "block text-[11px] font-medium mb-1" }, "Name"), h("input", { required: true, value: goalForm.name, onChange: (e) => setGoalForm({ ...goalForm, name: e.target.value }), placeholder: "Emergency Fund, Car, Travel…", className: inputCls })), h("div", { className: "grid grid-cols-2 gap-3" }, h("div", null, h("label", { className: "block text-[11px] font-medium mb-1" }, "Target amount"), h("input", { type: "number", inputMode: "decimal", min: "0.01", step: "0.01", required: true, value: goalForm.targetAmount, onChange: (e) => setGoalForm({ ...goalForm, targetAmount: e.target.value }), className: inputCls })), h("div", null, h("label", { className: "block text-[11px] font-medium mb-1" }, "Current amount"), h("input", { type: "number", inputMode: "decimal", min: "0", step: "0.01", required: true, value: goalForm.currentAmount, onChange: (e) => setGoalForm({ ...goalForm, currentAmount: e.target.value }), className: inputCls }))), h("div", null, h("label", { className: "block text-[11px] font-medium mb-1" }, "Target date (optional)"), h("input", { type: "date", value: goalForm.targetDate, onChange: (e) => setGoalForm({ ...goalForm, targetDate: e.target.value }), className: inputCls })), h("div", { className: "flex justify-end gap-2 pt-1" }, h("button", { type: "button", onClick: () => setPlanningEditor(null), className: "px-3 py-2 rounded-xl text-xs font-bold text-zinc-400" }, "Cancel"), h("button", { type: "submit", className: `px-3 py-2 rounded-xl text-xs font-bold ${accent.solidBtn} text-white` }, "Save goal"))),
+          h("div", { className: "space-y-2" }, goals.map((goal) => { const progress = Math.min(100, Math.round(goal.currentAmount / goal.targetAmount * 100)); const monthly = goalMonthlyNeed(goal); return h("div", { key: goal.id, className: `p-4 ${subCardCls} space-y-3` }, h("div", { className: "flex items-start justify-between gap-2" }, h("div", null, h("h4", { className: "text-sm font-bold" }, goal.name), goal.targetDate && h("p", { className: "text-[10px] text-zinc-400 mt-0.5" }, `Target ${dateFmt(goal.targetDate)}`)), h("div", { className: "flex gap-1" }, h("button", { onClick: () => openGoalEditor(goal), title: "Edit goal", className: "p-1.5 text-zinc-400 hover:text-emerald-500" }, h(IconEdit, { className: "w-3.5 h-3.5" })), h("button", { onClick: () => deleteGoal(goal), title: "Remove goal", className: "p-1.5 text-zinc-400 hover:text-rose-500" }, h(IconTrash, { className: "w-3.5 h-3.5" })))), h("div", { className: "flex justify-between text-xs" }, h("span", { className: "text-zinc-400" }, `${goal.currency} ${numFmt(goal.currentAmount)} saved`), h("span", { className: accent.textStrong }, `${goal.currency} ${numFmt(goal.targetAmount)} target`)), h("div", { className: "h-2 rounded-full overflow-hidden bg-zinc-800/20" }, h("div", { className: `${accent.swatch} h-full`, style: { width: `${progress}%` } })), h("div", { className: "flex justify-between text-[10px] text-zinc-400" }, h("span", null, `${progress}% complete`), monthly ? h("span", null, `~${goal.currency} ${numFmt(monthly.amount)}/month for ${monthly.months} mo`) : h("span", null, goal.currentAmount >= goal.targetAmount ? "Goal reached" : "No target date"))); })))
+      );
+    };
+    const renderRecurring = () => {
+      const h = React.createElement;
+      const categoryList = recurringForm.type === "income" ? settings.customCategories.income || ["Salary"] : settings.customCategories.expense || ["Groceries"];
+      const upcoming = recurringItems.filter((item) => item.active).slice().sort((a, b) => a.nextDate.localeCompare(b.nextDate)).slice(0, 5);
+      return h("div", { className: "space-y-5 max-w-xl mx-auto w-full" }, h("div", { className: "flex items-start justify-between px-1 gap-3" }, h("div", null, h("h2", { className: `text-sm font-bold uppercase tracking-wider ${accent.textStrong}` }, "Recurring"), h("p", { className: "text-xs text-zinc-400 mt-1" }, "Scheduled items only affect balances when you record them.")), h("button", { onClick: () => openRecurringEditor(), className: `shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold ${accent.solidBtn} text-white` }, "+ Add")),
+        recurringEditor && h("form", { onSubmit: saveRecurringItem, className: `p-4 ${cardCls} space-y-3` }, h("div", { className: "flex justify-between items-center" }, h("h3", { className: "font-bold text-sm" }, recurringForm.id ? "Edit recurring item" : "New recurring item"), h("button", { type: "button", onClick: () => setRecurringEditor(null), className: "p-1 text-zinc-400" }, h(IconClose, { className: "w-4 h-4" }))), h("div", { className: "grid grid-cols-2 gap-3" }, h("div", null, h("label", { className: "block text-[11px] font-medium mb-1" }, "Type"), h("select", { value: recurringForm.type, onChange: (e) => setRecurringForm({ ...recurringForm, type: e.target.value, category: (e.target.value === "income" ? settings.customCategories.income : settings.customCategories.expense || [""])[0] || "" }), className: inputCls }, h("option", { value: "expense" }, "Expense"), h("option", { value: "income" }, "Income"))), h("div", null, h("label", { className: "block text-[11px] font-medium mb-1" }, "Frequency"), h("select", { value: recurringForm.frequency, onChange: (e) => setRecurringForm({ ...recurringForm, frequency: e.target.value }), className: inputCls }, h("option", { value: "monthly" }, "Monthly"), h("option", { value: "weekly" }, "Weekly"), h("option", { value: "yearly" }, "Yearly")))), h("div", null, h("label", { className: "block text-[11px] font-medium mb-1" }, "Title"), h("input", { required: true, value: recurringForm.title, onChange: (e) => setRecurringForm({ ...recurringForm, title: e.target.value }), placeholder: "Salary, Rent, Internet…", className: inputCls })), h("div", { className: "grid grid-cols-2 gap-3" }, h("div", null, h("label", { className: "block text-[11px] font-medium mb-1" }, "Amount"), h("input", { type: "number", inputMode: "decimal", min: "0.01", step: "0.01", required: true, value: recurringForm.amount, onChange: (e) => setRecurringForm({ ...recurringForm, amount: e.target.value }), className: inputCls })), h("div", null, h("label", { className: "block text-[11px] font-medium mb-1" }, "Next date"), h("input", { type: "date", required: true, value: recurringForm.nextDate, onChange: (e) => setRecurringForm({ ...recurringForm, nextDate: e.target.value }), className: inputCls }))), h("div", null, h("label", { className: "block text-[11px] font-medium mb-1" }, "Account"), h("select", { required: true, value: recurringForm.accountId, onChange: (e) => setRecurringForm({ ...recurringForm, accountId: e.target.value }), className: inputCls }, accounts.map((account) => h("option", { key: account.id, value: account.id }, `${account.name} (${account.currency})`)))), h("div", null, h("label", { className: "block text-[11px] font-medium mb-1" }, "Category"), h("select", { value: recurringForm.category, onChange: (e) => setRecurringForm({ ...recurringForm, category: e.target.value }), className: inputCls }, categoryList.map((name) => h("option", { key: name, value: name }, name)))), h("div", { className: "flex justify-end gap-2 pt-1" }, h("button", { type: "button", onClick: () => setRecurringEditor(null), className: "px-3 py-2 rounded-xl text-xs font-bold text-zinc-400" }, "Cancel"), h("button", { type: "submit", className: `px-3 py-2 rounded-xl text-xs font-bold ${accent.solidBtn} text-white` }, "Save"))),
+        h("section", { className: "space-y-2" }, h("h3", { className: "text-[10px] font-bold uppercase tracking-wider text-zinc-500 px-1" }, "Upcoming"), upcoming.length === 0 ? h("div", { className: `p-5 text-center ${subCardCls}` }, h("p", { className: "text-xs text-zinc-400" }, "No active scheduled transactions.")) : h("div", { className: "space-y-2" }, upcoming.map((item) => h("div", { key: item.id, className: `p-3.5 ${subCardCls} flex items-center justify-between gap-3` }, h("div", null, h("p", { className: "text-xs font-bold" }, item.title), h("p", { className: "text-[10px] text-zinc-400 mt-0.5" }, `${dateFmt(item.nextDate)} · ${item.frequency}`)), h("span", { className: `text-xs font-bold ${item.type === "income" ? "text-emerald-500" : "text-rose-500"}` }, `${item.type === "income" ? "+" : "-"}${item.currency} ${numFmt(item.amount)}`))))),
+        h("section", { className: "space-y-2" }, h("h3", { className: "text-[10px] font-bold uppercase tracking-wider text-zinc-500 px-1" }, "Scheduled items"), recurringItems.length === 0 ? h("div", { className: `p-6 text-center ${cardCls}` }, h("p", { className: "text-xs font-semibold" }, "Add salary, rent, or subscriptions."), h("p", { className: "text-[10px] text-zinc-400 mt-1" }, "You stay in control—nothing is automatically recorded.")) : h("div", { className: "space-y-2" }, recurringItems.slice().sort((a, b) => a.nextDate.localeCompare(b.nextDate)).map((item) => h("div", { key: item.id, className: `p-4 ${subCardCls} space-y-3` }, h("div", { className: "flex items-start justify-between gap-2" }, h("div", null, h("div", { className: "flex gap-2 items-center" }, h("span", { className: `px-2 py-0.5 rounded text-[9px] font-bold uppercase ${item.type === "income" ? "bg-emerald-500/10 text-emerald-500" : "bg-rose-500/10 text-rose-500"}` }, item.type), !item.active && h("span", { className: "px-2 py-0.5 rounded text-[9px] font-bold uppercase bg-zinc-500/10 text-zinc-400" }, "Paused")), h("h4", { className: "text-sm font-bold mt-1" }, item.title), h("p", { className: "text-[10px] text-zinc-400 mt-0.5" }, `Next ${dateFmt(item.nextDate)} · ${item.frequency}`)), h("span", { className: `text-sm font-bold ${item.type === "income" ? "text-emerald-500" : "text-rose-500"}` }, `${item.type === "income" ? "+" : "-"}${item.currency} ${numFmt(item.amount)}`)), h("div", { className: "flex flex-wrap gap-2 pt-1" }, item.active && h("button", { onClick: () => recordRecurringOccurrence(item), className: `px-3 py-2 rounded-xl text-xs font-bold ${accent.solidBtn} text-white` }, "Record now"), h("button", { onClick: () => updateRecurringItem(item, { active: !item.active }), className: "px-3 py-2 rounded-xl text-xs font-bold bg-zinc-500/10 text-zinc-500" }, item.active ? "Pause" : "Resume"), item.active && h("button", { onClick: () => updateRecurringItem(item, { nextDate: advanceRecurringDate(item.nextDate, item.frequency) }), className: "px-3 py-2 rounded-xl text-xs font-bold bg-zinc-500/10 text-zinc-500" }, "Skip next"), h("button", { onClick: () => openRecurringEditor(item), className: "p-2 rounded-xl text-zinc-400 hover:text-emerald-500" }, h(IconEdit, { className: "w-4 h-4" })), h("button", { onClick: () => deleteRecurringItem(item), className: "p-2 rounded-xl text-zinc-400 hover:text-rose-500" }, h(IconTrash, { className: "w-4 h-4" })))))))
+      );
+    };
+    const SettingsSection = ({ title, children, tone = "text-zinc-500" }) => /* @__PURE__ */ React.createElement("section", { className: "space-y-2" }, /* @__PURE__ */ React.createElement("h3", { className: `text-[10px] font-bold uppercase tracking-wider px-1 ${tone}` }, title), children);
+    const SettingsRow = ({ icon: Icon, title, detail, children, danger = false }) => /* @__PURE__ */ React.createElement("div", { className: `p-4 ${subCardCls} flex items-center gap-3` }, Icon && /* @__PURE__ */ React.createElement("div", { className: `w-9 h-9 shrink-0 rounded-xl flex items-center justify-center ${danger ? "bg-rose-500/10 text-rose-500" : `${accent.activeBg10} ${accent.textStrong}`}` }, /* @__PURE__ */ React.createElement(Icon, { className: "w-4 h-4" })), /* @__PURE__ */ React.createElement("div", { className: "min-w-0 flex-1" }, /* @__PURE__ */ React.createElement("p", { className: `text-xs font-bold ${danger ? "text-rose-500" : ""}` }, title), detail && /* @__PURE__ */ React.createElement("p", { className: "text-[10px] text-zinc-400 mt-0.5 leading-relaxed" }, detail)), children && /* @__PURE__ */ React.createElement("div", { className: "shrink-0" }, children));
+    const renderSettings = () => {
+      const h = React.createElement;
+      const dataSize = new Blob([JSON.stringify({ accounts, assets, loans, transactions, rates: exchangeRates, budgets, goals, recurringItems })]).size;
+      const dataSizeLabel = dataSize < 1024 ? `${dataSize} bytes` : `${(dataSize / 1024).toFixed(1)} KB`;
+      const categories = settings.customCategories || DEFAULT_SETTINGS.customCategories;
+      const dashboardOptions = [
+        { id: "accounts", label: "Accounts" }, { id: "vault", label: "Assets" }, { id: "loans", label: "Lent" },
+        { id: "analytics", label: "Month Snapshot" }, { id: "planning", label: "Plans" }, { id: "recurring", label: "Upcoming" },
+        { id: "gold", label: "24k Gold Rate" }, { id: "rates", label: "FX Rates" }, { id: "gold-performance", label: "Gold Performance" },
+        { id: "runway", label: "Cash Buffer" }, { id: "spending", label: "Spending Pace" }
+      ];
+      const selectedDashboardCards = Array.isArray(settings.dashboardCards) && settings.dashboardCards.length <= 4 ? settings.dashboardCards : DEFAULT_SETTINGS.dashboardCards;
+      const toggleDashboardCard = (id) => {
+        if (selectedDashboardCards.includes(id)) updateSettings({ dashboardCards: selectedDashboardCards.filter((cardId) => cardId !== id) });
+        else if (selectedDashboardCards.length < 4) updateSettings({ dashboardCards: [...selectedDashboardCards, id] });
+      };
+      return h(React.Fragment, null, h("div", { className: "space-y-6 max-w-xl mx-auto w-full" },
+        h("div", { className: "px-1" }, h("h2", { className: `text-sm font-bold uppercase tracking-wider ${accent.textStrong}` }, "Settings"), h("p", { className: "text-xs text-zinc-400 mt-1" }, "Preferences and data stored on this device.")),
+        h(SettingsSection, { title: "Appearance" }, h(SettingsRow, { icon: IconTune, title: "Theme", detail: "Choose how AleemFin looks on this device." }, h("select", { value: settings.theme, onChange: (e) => updateSettings({ theme: e.target.value }), className: `${inputCls} w-auto py-2 text-xs font-bold` }, h("option", { value: "light" }, "Light"), h("option", { value: "dark" }, "Dark"), h("option", { value: "auto" }, "System")))),
+        h(SettingsSection, { title: "Home dashboard" }, h("div", { className: `p-4 ${subCardCls} space-y-3` }, h("div", null, h("p", { className: "text-xs font-bold" }, "Choose four cards"), h("p", { className: "text-[10px] text-zinc-400 mt-0.5" }, `${selectedDashboardCards.length}/4 selected. Choose from your finance totals, plans, upcoming items, or live market information.`)), h("div", { className: "grid grid-cols-2 gap-2" }, dashboardOptions.map((option) => { const selected = selectedDashboardCards.includes(option.id); const unavailable = !selected && selectedDashboardCards.length >= 4; return h("button", { key: option.id, onClick: () => toggleDashboardCard(option.id), disabled: unavailable, className: `px-3 py-2.5 rounded-xl border text-left text-xs font-bold disabled:opacity-40 ${selected ? `${accent.activeBg} ${accent.textStrong} border-current` : darkMode ? "bg-zinc-950 border-zinc-800 text-zinc-400" : "bg-zinc-50 border-zinc-200 text-zinc-500"}` }, selected ? "✓ " : "", option.label); })))),
+        h(SettingsSection, { title: "Currency" }, h("div", { className: "space-y-2" },
+          h(SettingsRow, { icon: IconWallet, title: "Base currency", detail: "Used for summaries and dashboard totals." }, h("select", { value: currency, onChange: (e) => { setCurrency(e.target.value); updateSettings({ defaultCurrency: e.target.value }); }, className: `${inputCls} w-auto py-2 text-xs font-bold` }, h("option", { value: "AED" }, "AED"), h("option", { value: "USD" }, "USD"), h("option", { value: "PKR" }, "PKR"))),
+          h(SettingsRow, { icon: IconRates, title: "Exchange rates", detail: "Manage AED, USD, and PKR rates or refresh them from the live source." }, h("button", { onClick: openRatesModal, className: `px-3 py-2 rounded-xl text-xs font-bold ${accent.activeBg10} ${accent.textStrong}` }, "Manage")),
+          h(SettingsRow, { icon: IconSync, title: "Sync live rates", detail: "Check AED, USD, and PKR rates when AleemFin opens. You can always sync manually." }, h("button", { onClick: () => updateSettings({ liveRateSync: settings.liveRateSync === false }), className: `px-3 py-2 rounded-xl text-xs font-bold ${settings.liveRateSync === false ? "bg-zinc-500/10 text-zinc-500" : `${accent.activeBg10} ${accent.textStrong}`}` }, settings.liveRateSync === false ? "Off" : "On")))),
+        h(SettingsSection, { title: "Data & backup" }, h("div", { className: "space-y-2" },
+          h(SettingsRow, { icon: IconDownload, title: "Backup data", detail: `${accounts.length} accounts · ${transactions.length} transactions · ${budgets.length} budgets · ${goals.length} goals · ${dataSizeLabel}` }, h("button", { onClick: exportBackup, className: `px-3 py-2 rounded-xl text-xs font-bold ${accent.solidBtn} text-white` }, "Backup")),
+          h(SettingsRow, { icon: IconUpload, title: "Restore data", detail: "Replace this device’s data with a previous AleemFin backup." }, h("label", { className: "px-3 py-2 rounded-xl text-xs font-bold bg-zinc-500/10 text-zinc-500 cursor-pointer" }, "Restore", h("input", { type: "file", accept: ".json", onChange: importBackup, className: "hidden" }))),
+          h(SettingsRow, { icon: IconCSV, title: "Export transactions", detail: "Download your ledger as a CSV file." }, h("button", { onClick: exportCSV, className: "px-3 py-2 rounded-xl text-xs font-bold bg-zinc-500/10 text-zinc-500" }, "Export")))),
+        h(SettingsSection, { title: "Categories" }, h("div", { className: "space-y-2" }, h(SettingsRow, { icon: IconTag, title: "Manage categories", detail: `${(categories.income || []).length} income and ${(categories.expense || []).length} expense categories.` }, h("button", { onClick: () => setCategoryManagerOpen((open) => !open), className: `px-3 py-2 rounded-xl text-xs font-bold ${accent.activeBg10} ${accent.textStrong}` }, categoryManagerOpen ? "Done" : "Manage")), categoryManagerOpen && h("div", { className: `p-4 ${subCardCls} space-y-3` }, h("div", { className: "flex gap-2" }, ["expense", "income"].map((type) => h("button", { key: type, onClick: () => setCategoryType(type), className: `flex-1 py-2 rounded-xl text-xs font-bold capitalize ${categoryType === type ? `${accent.activeBg} ${accent.textStrong}` : "bg-zinc-500/10 text-zinc-400"}` }, type))), h("div", { className: "space-y-2" }, (categories[categoryType] || []).map((name) => h("div", { key: name, className: `px-3 py-2 rounded-xl flex items-center justify-between ${darkMode ? "bg-zinc-950" : "bg-zinc-50"}` }, h("span", { className: "text-xs font-semibold" }, name), h("button", { onClick: () => removeCategory(categoryType, name), className: "p-1 rounded-lg text-zinc-400 hover:text-rose-500", title: `Remove ${name}` }, h(IconTrash, { className: "w-3.5 h-3.5" }))))), h("form", { onSubmit: addCategory, className: "flex gap-2" }, h("input", { value: categoryName, onChange: (e) => setCategoryName(e.target.value), placeholder: "New category", className: `${inputCls} flex-1` }), h("button", { type: "submit", className: `px-3 py-2 rounded-xl text-xs font-bold ${accent.solidBtn} text-white` }, "Add"))))),
+        h(SettingsSection, { title: "App" }, h("div", { className: "space-y-2" },
+          h(SettingsRow, { icon: IconOverview, title: "App name", detail: "AleemFin" }),
+          h(SettingsRow, { icon: IconSettings, title: "Version", detail: "1.0.0 · Personal prototype" }),
+          h(SettingsRow, { icon: IconWallet, title: "Device storage", detail: `${dataSizeLabel} used by your finance data. Data stays on this device.` }))),
+        h(SettingsSection, { title: "Danger zone", tone: "text-rose-500" }, h("div", { className: "space-y-2" },
+          h(SettingsRow, { icon: IconTrash, title: "Reset all data", detail: "Remove all accounts, transactions, loans and assets, while keeping your preferences.", danger: true }, h("button", { onClick: () => openDangerAction("reset"), className: "px-3 py-2 rounded-xl text-xs font-bold bg-rose-500/10 text-rose-500" }, "Reset")),
+          h(SettingsRow, { icon: IconTrash, title: "Clear all data", detail: "Permanently remove all AleemFin data and preferences from this device.", danger: true }, h("button", { onClick: () => openDangerAction("clear"), className: "px-3 py-2 rounded-xl text-xs font-bold bg-rose-600 text-white" }, "Clear"))))),
+        dangerAction && h("div", { className: "fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/60 backdrop-blur-sm" }, h("div", { className: `w-full max-w-xs rounded-3xl border p-5 shadow-2xl space-y-4 ${darkMode ? "bg-zinc-900 border-zinc-800 text-zinc-100" : "bg-white border-zinc-200 text-zinc-900"}` }, h("div", { className: "w-10 h-10 rounded-2xl bg-rose-500/10 text-rose-500 flex items-center justify-center" }, h(IconTrash, { className: "w-5 h-5" })), h("div", { className: "space-y-1" }, h("h3", { className: "font-bold text-sm" }, dangerAction === "reset" ? "Reset all data?" : "Clear all data?"), h("p", { className: "text-xs text-zinc-400 leading-relaxed" }, dangerAction === "reset" ? "This will permanently remove your accounts, transactions, loans, assets and other stored AleemFin data. Your preferences will remain." : "This will permanently remove your accounts, transactions, loans, assets and all AleemFin preferences from this device.")), h("div", null, h("label", { className: "block text-[11px] font-medium mb-1" }, `Type ${dangerAction === "reset" ? "RESET" : "CLEAR"} to continue`), h("input", { autoFocus: true, value: dangerPhrase, onChange: (e) => setDangerPhrase(e.target.value.toUpperCase()), className: inputCls })), h("div", { className: "pt-1 flex justify-end gap-2" }, h("button", { type: "button", onClick: () => setDangerAction(null), className: `px-3.5 py-2 rounded-xl text-xs font-semibold border ${darkMode ? "border-zinc-800 hover:bg-zinc-800" : "border-zinc-200 hover:bg-zinc-100"}` }, "Cancel"), h("button", { type: "button", onClick: confirmDangerAction, disabled: dangerPhrase !== (dangerAction === "reset" ? "RESET" : "CLEAR"), className: "px-3.5 py-2 bg-rose-600 hover:bg-rose-500 disabled:opacity-40 text-white rounded-xl text-xs font-semibold" }, dangerAction === "reset" ? "Reset" : "Clear"))))
+      );
+    };
+    const DashCard = ({ tabId, cardId = tabId, icon: Icon, iconWrapCls, tintCls, label, big, bigCls, sub, chip, chipCls }) => {
+      const selected = Array.isArray(settings.dashboardCards) ? settings.dashboardCards : DEFAULT_SETTINGS.dashboardCards;
+      if (!selected.includes(cardId) && cardId !== "analytics") return null;
+      const card = selected.includes(cardId) && /* @__PURE__ */ React.createElement("button", { onClick: () => setActiveTab(tabId), className: `text-left p-4 rounded-3xl border shadow-sm active:scale-[0.97] transition-transform flex flex-col gap-2 ${tintCls}` }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between" }, /* @__PURE__ */ React.createElement("div", { className: `w-8 h-8 rounded-xl flex items-center justify-center ${iconWrapCls}` }, /* @__PURE__ */ React.createElement(Icon, { className: "w-4 h-4" })), /* @__PURE__ */ React.createElement(IconChevron, { className: "w-3.5 h-3.5 opacity-50" })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("span", { className: "text-[10px] font-bold uppercase tracking-wider opacity-60 block" }, label), /* @__PURE__ */ React.createElement("span", { className: `font-extrabold text-base leading-tight block mt-0.5 ${bigCls}` }, big), sub && /* @__PURE__ */ React.createElement("span", { className: "text-[10px] opacity-70 mt-0.5 block" }, sub), chip && /* @__PURE__ */ React.createElement("span", { className: `inline-block mt-1 text-[10px] font-bold px-1.5 py-0.5 rounded ${chipCls}` }, chip)));
+      if (cardId !== "analytics") return card;
+      return /* @__PURE__ */ React.createElement(React.Fragment, null, card,
+        selected.includes("planning") && /* @__PURE__ */ React.createElement(DashCard, { cardId: "planning", tabId: "planning", icon: IconTarget, iconWrapCls: "bg-emerald-500/20 text-emerald-600", tintCls: "bg-emerald-500/10 border-emerald-500/20 hover:bg-emerald-500/15 text-current", label: "Plans & Goals", big: `${budgets.length + goals.length}`, bigCls: "text-emerald-600", sub: `${budgets.length} budget${budgets.length === 1 ? "" : "s"} · ${goals.length} goal${goals.length === 1 ? "" : "s"}` }),
+        selected.includes("recurring") && /* @__PURE__ */ React.createElement(DashCard, { cardId: "recurring", tabId: "recurring", icon: IconCalendar, iconWrapCls: "bg-blue-500/20 text-blue-600", tintCls: "bg-blue-500/10 border-blue-500/20 hover:bg-blue-500/15 text-current", label: "Upcoming", big: `${recurringItems.filter((item) => item.active).length}`, bigCls: "text-blue-600", sub: "Scheduled items" }),
+        selected.includes("gold") && /* @__PURE__ */ React.createElement(DashCard, { cardId: "gold", tabId: "vault", icon: IconVault, iconWrapCls: "bg-amber-500/20 text-amber-600", tintCls: "bg-amber-500/10 border-amber-500/20 hover:bg-amber-500/15 text-current", label: "24k Gold Rate", big: liveGoldAEDPerGram ? `AED ${liveGoldAEDPerGram.toFixed(2)}/g` : "Check live rate", bigCls: "text-amber-600", sub: liveGoldAEDPerGram ? "Today's live market benchmark" : "Tap to refresh from Assets" }),
+        selected.includes("rates") && /* @__PURE__ */ React.createElement(DashCard, { cardId: "rates", tabId: "settings", icon: IconRates, iconWrapCls: "bg-sky-500/20 text-sky-600", tintCls: "bg-sky-500/10 border-sky-500/20 hover:bg-sky-500/15 text-current", label: "FX · AED / PKR", big: `1 AED = ${(1 / exchangeRates.PKR).toFixed(2)} PKR`, bigCls: "text-sky-600", sub: `1 USD = AED ${exchangeRates.USD.toFixed(2)}` }),
+        selected.includes("gold-performance") && /* @__PURE__ */ React.createElement(DashCard, { cardId: "gold-performance", tabId: "vault", icon: IconVault, iconWrapCls: "bg-amber-500/20 text-amber-600", tintCls: "bg-amber-500/10 border-amber-500/20 hover:bg-amber-500/15 text-current", label: "Gold Performance", big: goldChangePct === null ? "No gold assets" : `${goldChangePct >= 0 ? "▲ +" : "▼ "}${Math.abs(goldChangePct).toFixed(1)}%`, bigCls: goldChangePct === null ? "text-zinc-500" : goldChangePct >= 0 ? "text-emerald-600" : "text-rose-500", sub: goldChangePct === null ? "Add gold assets to track it" : `${goldChangeAED >= 0 ? "Up" : "Down"} AED ${numFmt(Math.abs(goldChangeAED))} since purchase` }),
+        selected.includes("runway") && /* @__PURE__ */ React.createElement(DashCard, { cardId: "runway", tabId: "analytics", icon: IconAnalytics, iconWrapCls: "bg-teal-500/20 text-teal-600", tintCls: "bg-teal-500/10 border-teal-500/20 hover:bg-teal-500/15 text-current", label: "Cash Buffer", big: `${emergencyRunwayMonths} mo`, bigCls: "text-teal-600", sub: "At this month’s spending pace" }),
+        selected.includes("spending") && /* @__PURE__ */ React.createElement(DashCard, { cardId: "spending", tabId: "analytics", icon: IconLedger, iconWrapCls: "bg-rose-500/20 text-rose-500", tintCls: "bg-rose-500/10 border-rose-500/20 hover:bg-rose-500/15 text-current", label: "Spending Pace", big: fmt(monthlyExpenseAED), bigCls: "text-rose-500", sub: `${currentMonthLabel} expenses` })
+      );
+    };
+    useEffect(() => {
+      document.querySelectorAll("[data-home-recurring-reminder]").forEach((node) => node.remove());
+      if (activeTab !== "overview" || recurringReminders.length === 0) return;
+      const greetingLine = [...document.querySelectorAll("main p")].find((node) => /^(Good morning|Good afternoon|Good evening),? Aleem$/.test(node.textContent || ""));
+      if (!greetingLine) return;
+      if (greetingLine.firstChild) greetingLine.firstChild.textContent = (greetingLine.firstChild.textContent || "").replace(", Aleem", " Aleem");
+      const reminder = document.createElement("span");
+      reminder.dataset.homeRecurringReminder = "true";
+      reminder.className = "inline-flex items-center gap-1.5 ml-1";
+      const summary = document.createElement("span");
+      summary.textContent = `— ${recurringReminders[0].title} is due tomorrow${recurringReminders.length > 1 ? ` +${recurringReminders.length - 1}` : ""}`;
+      const done = document.createElement("button");
+      done.type = "button";
+      done.setAttribute("aria-label", "Mark recurring reminder done");
+      done.title = "Mark reminder done";
+      done.className = "w-5 h-5 rounded-full bg-emerald-500/15 text-emerald-500 text-[11px] font-extrabold leading-none hover:bg-emerald-500 hover:text-white active:scale-95";
+      done.textContent = "✓";
+      done.onclick = () => recurringReminders.forEach(markRecurringReminderDone);
+      reminder.append(summary, done);
+      greetingLine.append(reminder);
+    }, [activeTab, recurringReminders, darkMode]);
+    useEffect(() => {
+      if (activeTab !== "accounts") return;
+      const hiddenRows = [...document.querySelectorAll("span")].filter((node) => /^No (inflow|outflow) recorded/.test(node.textContent || ""));
+      hiddenRows.forEach((message) => {
+        const row = message.parentElement;
+        const section = row && row.parentElement;
+        if (!row || !section) return;
+        row.style.display = "none";
+        if ([...section.children].every((child) => child.style.display === "none")) section.style.display = "none";
+      });
+    }, [activeTab, accounts, transactions]);
+    useEffect(() => {
+      document.querySelectorAll("[data-loan-subtabs]").forEach((node) => node.remove());
+      if (activeTab !== "loans") return;
+      const heading = [...document.querySelectorAll("h2")].find((node) => node.textContent === "Loans & Liabilities");
+      const loanRoot = heading && heading.parentElement && heading.parentElement.parentElement;
+      if (!loanRoot || loanRoot.children.length < 3) return;
+      const list = loanRoot.children[2];
+      const tabs = document.createElement("div");
+      tabs.dataset.loanSubtabs = "true";
+      tabs.className = `grid grid-cols-2 gap-2 p-1 rounded-2xl ${darkMode ? "bg-zinc-900" : "bg-zinc-200/70"}`;
+      [["lent", "Lent-out"], ["borrowed", "Borrowed"]].forEach(([type, label]) => {
+        const tab = document.createElement("button");
+        tab.type = "button";
+        tab.textContent = label;
+        tab.className = `py-2.5 rounded-xl text-xs font-bold ${loanView === type ? `${accent.activeBg} ${accent.textStrong}` : "text-zinc-400"}`;
+        tab.onclick = () => setLoanView(type);
+        tabs.append(tab);
+      });
+      loanRoot.insertBefore(tabs, list);
+      let visible = 0;
+      loans.forEach((loan) => {
+        const name = [...list.querySelectorAll("h3")].find((node) => node.textContent === loan.name);
+        const card = name && name.closest("div.space-y-3");
+        if (!card) return;
+        const show = loan.type === loanView;
+        card.style.display = show ? "" : "none";
+        if (show) visible += 1;
+      });
+      if (visible === 0) {
+        const empty = document.createElement("p");
+        empty.dataset.loanSubtabsEmpty = "true";
+        empty.className = "text-center text-xs text-zinc-400 py-8";
+        empty.textContent = loanView === "lent" ? "No lent-out entries." : "No borrowed entries.";
+        list.append(empty);
+      }
+      document.querySelectorAll('a[href*="wa.me"]').forEach((link) => {
+        if (link.dataset.whatsappIcon) return;
+        link.dataset.whatsappIcon = "true";
+        link.setAttribute("aria-label", "Open WhatsApp reminder");
+        link.title = "Open WhatsApp";
+        link.className = "inline-flex w-7 h-7 rounded-lg bg-emerald-500 text-white items-center justify-center hover:bg-emerald-600 shrink-0";
+        const loanCard = link.closest("div.space-y-3");
+        const loanName = loanCard && loanCard.querySelector("h3");
+        if (loanName && loanName.parentElement) {
+          const titleRow = document.createElement("div");
+          titleRow.className = "flex items-center gap-2";
+          loanName.parentElement.insertBefore(titleRow, loanName);
+          titleRow.append(loanName, link);
+        }
+        link.textContent = "";
+        const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        icon.setAttribute("viewBox", "0 0 24 24");
+        icon.setAttribute("fill", "none");
+        icon.setAttribute("stroke", "currentColor");
+        icon.setAttribute("stroke-width", "2");
+        icon.setAttribute("stroke-linecap", "round");
+        icon.setAttribute("stroke-linejoin", "round");
+        icon.setAttribute("class", "w-4 h-4");
+        const bubble = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        bubble.setAttribute("d", "M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z");
+        const phone = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        phone.setAttribute("d", "M9.4 8.2c.3 2.4 1.7 3.8 4.1 4.1l1.2-1.2 1.5.7c.2.1.3.4.2.6l-.7 1.2c-.1.2-.4.3-.6.2-4.3-1.2-6.7-3.6-7.9-7.9-.1-.2 0-.5.2-.6l1.2-.7c.2-.1.5 0 .6.2l.7 1.5-1.2 1.2Z");
+        icon.append(bubble, phone);
+        link.append(icon);
+      });
+    }, [activeTab, loanView, loans, darkMode, accent.activeBg, accent.textStrong]);
     return /* @__PURE__ */ React.createElement("div", { className: `min-h-screen transition-colors duration-300 pb-24 md:pb-8 flex flex-col ${darkMode ? "bg-zinc-950 text-zinc-100" : "bg-zinc-100/80 text-zinc-900"}` }, /* @__PURE__ */ React.createElement("header", { className: `sticky top-0 z-40 backdrop-blur-xl border-b safe-top ${darkMode ? "bg-zinc-900/80 border-zinc-800" : "bg-white/80 border-zinc-200"}` }, /* @__PURE__ */ React.createElement("div", { className: "max-w-5xl mx-auto px-4 h-16 flex items-center justify-between safe-x" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center space-x-3" }, /* @__PURE__ */ React.createElement("div", { className: `p-2 bg-gradient-to-tr ${accent.grad} rounded-2xl text-white shadow-md shadow-emerald-500/20` }, /* @__PURE__ */ React.createElement("svg", { className: "w-5 h-5", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, /* @__PURE__ */ React.createElement("path", { d: "M21 12V7H5a2 2 0 0 1 0-4h14v4" }), /* @__PURE__ */ React.createElement("path", { d: "M3 5v14a2 2 0 0 0 2 2h16v-5" }), /* @__PURE__ */ React.createElement("path", { d: "M18 12a2 2 0 0 0 0 4h4v-4Z" }))), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h1", { className: "font-bold text-base leading-tight tracking-tight" }, "AleemFin"), /* @__PURE__ */ React.createElement("p", { className: `text-[10px] ${darkMode ? "text-zinc-400" : "text-zinc-500"}` }, "Wealth ", /* @__PURE__ */ React.createElement("span", { className: "opacity-60" }, "\u2014 Created by Aleem")))), /* @__PURE__ */ React.createElement("nav", { className: "hidden md:flex items-center space-x-1 p-1 rounded-2xl border bg-zinc-900/90 border-zinc-700/50" }, NAV_ITEMS.map((tab) => {
       const Icon = tab.icon;
       const isActive = activeTab === tab.id;
@@ -1226,7 +1539,7 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       const base = Math.max(1, totalLiquidAED + totalPhysicalAED + totalLoansLentAED + totalLoansBorrowedAED);
       const pct = Math.min(100, Math.round(Math.abs(row.val) / base * 100));
       return /* @__PURE__ */ React.createElement("div", { key: row.label, className: "space-y-1" }, /* @__PURE__ */ React.createElement("div", { className: "flex justify-between text-xs" }, /* @__PURE__ */ React.createElement("span", { className: "font-semibold" }, row.label), /* @__PURE__ */ React.createElement("span", { className: "text-zinc-400" }, fmt(row.val))), /* @__PURE__ */ React.createElement("div", { className: "w-full bg-zinc-800/20 h-1.5 rounded-full overflow-hidden" }, /* @__PURE__ */ React.createElement("div", { className: `${row.cls} h-full`, style: { width: `${pct}%` } })));
-    }))))), /* @__PURE__ */ React.createElement("nav", { className: "md:hidden fixed bottom-0 left-0 right-0 z-40 backdrop-blur-xl border-t safe-bottom bg-zinc-900/95 border-zinc-800", style: { position: "fixed" } }, /* @__PURE__ */ React.createElement("div", { className: "max-w-md mx-auto px-2 py-1.5 h-[74px] grid grid-cols-5 items-center gap-1 safe-x" }, PRIMARY_NAV_ITEMS.map((tab) => {
+    }))))), activeTab === "analytics" && renderInsightSummary(), activeTab === "planning" && renderPlanning(), activeTab === "recurring" && renderRecurring(), activeTab === "settings" && renderSettings(), /* @__PURE__ */ React.createElement("nav", { className: "md:hidden fixed bottom-0 left-0 right-0 z-40 backdrop-blur-xl border-t safe-bottom bg-zinc-900/95 border-zinc-800", style: { position: "fixed" } }, /* @__PURE__ */ React.createElement("div", { className: "max-w-md mx-auto px-2 py-1.5 h-[74px] grid grid-cols-5 items-center gap-1 safe-x" }, PRIMARY_NAV_ITEMS.map((tab) => {
       const Icon = tab.icon;
       const isActive = activeTab === tab.id;
       return /* @__PURE__ */ React.createElement("button", { key: tab.id, onClick: () => {
