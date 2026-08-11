@@ -333,8 +333,8 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
   @keyframes contentEnter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes navPop { 0% { transform: scale(.88); } 70% { transform: scale(1.06); } 100% { transform: scale(1); } }
   @keyframes greetingType { from { max-width: 0; opacity: .35; } to { max-width: 42rem; opacity: 1; } }
-  @keyframes heroGainFlash { 0%,100% { box-shadow: 0 24px 48px rgba(0,0,0,.28); } 40% { box-shadow: 0 0 0 4px rgba(16,185,129,.5), 0 24px 50px rgba(16,185,129,.35); } }
-  @keyframes heroLossFlash { 0%,100% { box-shadow: 0 24px 48px rgba(0,0,0,.28); } 40% { box-shadow: 0 0 0 4px rgba(244,63,94,.5), 0 24px 50px rgba(244,63,94,.35); } }
+  @keyframes heroGainFlash { 0%,100% { border-color: rgb(39,39,42); } 45% { border-color: rgb(16,185,129); } }
+  @keyframes heroLossFlash { 0%,100% { border-color: rgb(39,39,42); } 45% { border-color: rgb(244,63,94); } }
   main > * { animation: contentEnter .28s cubic-bezier(.2,.8,.2,1) both; }
   main button { transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease, color .16s ease, border-color .16s ease; }
   main button:active { transform: scale(.96); }
