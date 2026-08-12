@@ -1662,7 +1662,11 @@ function(a,b,c){if(!Vd(b))throw Error(m(200));return Wd(null,a,b,!1,c)};Q.unmoun
       button.title = "Settings";
       button.setAttribute("aria-label", "Open Settings");
       button.className = `p-2 rounded-xl border ${darkMode ? "bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-emerald-400" : "bg-white border-zinc-200 text-zinc-700 hover:text-emerald-600"}`;
-      button.innerHTML = '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.5"/></svg>';
+      button.innerHTML = '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <line x1="4" x2="20" y1="12" y2="12"></line>
+  <line x1="4" x2="20" y1="6" y2="6"></line>
+  <line x1="4" x2="20" y1="18" y2="18"></line>
+</svg>';
       button.onclick = () => {
         setMoreSheetOpen(false);
         setActiveTab("settings");
