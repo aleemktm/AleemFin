@@ -50,6 +50,21 @@
     .toast { transform:translateY(12px); opacity:0; pointer-events:none; transition:all .3s ease; }
     .toast.show { transform:none; opacity:1; }
     .progress { transform-origin:left; transform:scaleX(0); }
+
+    .mockup-stage{position:relative;overflow:hidden;border-radius:2rem;background:linear-gradient(145deg,#e9e4dc,#f8f6f2);min-height:360px;isolation:isolate;box-shadow:0 28px 80px rgba(23,34,80,.10)}
+    .mockup-stage:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 12%,rgba(255,255,255,.95),transparent 34%),radial-gradient(circle at 85% 90%,rgba(171,62,90,.10),transparent 38%);pointer-events:none}
+    .mockup-shadow{filter:drop-shadow(0 28px 20px rgba(23,34,80,.18))}
+    .paper{background:linear-gradient(135deg,#fff 0%,#f7f5f0 100%);box-shadow:0 28px 40px rgba(23,34,80,.16),0 2px 5px rgba(23,34,80,.08)}
+    .card-paper{background:linear-gradient(145deg,#fff,#f3f0eb);box-shadow:0 22px 35px rgba(23,34,80,.19),0 1px 3px rgba(23,34,80,.12)}
+    .glass{background:linear-gradient(145deg,rgba(255,255,255,.72),rgba(255,255,255,.36));backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.72);box-shadow:0 24px 60px rgba(23,34,80,.16)}
+    .mockup-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(23,34,80,.45)}
+    .device{background:#12131a;border:7px solid #12131a;border-radius:34px;box-shadow:0 30px 55px rgba(23,34,80,.28),inset 0 0 0 1px rgba(255,255,255,.08)}
+    .device-screen{border-radius:25px;overflow:hidden;background:#f6f4f0}
+    .mockup-float{transition:transform .6s cubic-bezier(.22,1,.36,1),filter .6s ease}.mockup-card:hover .mockup-float{transform:translateY(-8px) rotate(-1deg);filter:drop-shadow(0 34px 24px rgba(23,34,80,.20))}
+    .door{background:linear-gradient(100deg,#d7d1c9,#eeeae4 48%,#c8c0b6);box-shadow:inset -25px 0 50px rgba(23,34,80,.08),inset 20px 0 30px rgba(255,255,255,.5)}
+    .desk{background:linear-gradient(180deg,#bca28a,#8e7057);box-shadow:inset 0 12px 30px rgba(255,255,255,.15),0 25px 60px rgba(23,34,80,.16)}
+    .fabric{background:repeating-linear-gradient(45deg,#e9e2d8 0,#e9e2d8 4px,#e4dcd1 4px,#e4dcd1 8px)}
+    @media(max-width:640px){.mockup-stage{min-height:300px}}
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after{animation-duration:.001ms!important; animation-iteration-count:1!important; transition-duration:.001ms!important; scroll-behavior:auto!important} .reveal{opacity:1;transform:none} }
   </style>
 </head>
@@ -66,7 +81,7 @@
       <div class="hidden sm:flex items-center gap-1">
         <a href="#identity" class="px-3 py-2 text-[11px] tracking-[.16em] uppercase opacity-65 hover:opacity-100 transition">Identity</a>
         <a href="#variants" class="px-3 py-2 text-[11px] tracking-[.16em] uppercase opacity-65 hover:opacity-100 transition">Variants</a>
-        <a href="#colour" class="px-3 py-2 text-[11px] tracking-[.16em] uppercase opacity-65 hover:opacity-100 transition">Colour</a>
+        <a href="#mockups" class="px-3 py-2 text-[11px] tracking-[.16em] uppercase opacity-65 hover:opacity-100 transition">In practice</a><a href="#colour" class="px-3 py-2 text-[11px] tracking-[.16em] uppercase opacity-65 hover:opacity-100 transition">Colour</a>
       </div>
       <button id="themeBtn" class="rounded-full bg-[#172250] text-white px-4 py-2 text-[11px] tracking-[.12em] uppercase hover:scale-[1.02] transition" aria-label="Toggle presentation theme">Theme</button>
     </nav>
@@ -153,10 +168,95 @@
       </div>
     </section>
 
+
+    <section id="mockups" class="py-28 sm:py-36 bg-white">
+      <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
+        <div class="reveal max-w-3xl">
+          <div class="text-[10px] tracking-[.28em] uppercase font-semibold text-[#AB3E5A] mb-5">04 / Brand in practice</div>
+          <h2 class="font-display text-4xl sm:text-5xl tracking-[-.035em]">A thoughtful identity,<br><span class="opacity-45">made tangible.</span></h2>
+          <p class="mt-6 text-sm sm:text-base leading-7 opacity-60 max-w-2xl">The identity is designed to feel equally at home across the moments that shape a wellbeing practice — from a welcoming clinic environment to considered client communications, digital touchpoints and everyday professional materials.</p>
+        </div>
+
+        <div class="mt-14 grid lg:grid-cols-12 gap-5">
+          <article class="mockup-card reveal lg:col-span-7 rounded-[2rem] border border-black/5 bg-[#F6F4F0] overflow-hidden">
+            <div class="p-6 sm:p-8 flex items-center justify-between"><div><div class="mockup-label">Clinic environment</div><h3 class="mt-2 font-semibold">Reception &amp; room signage</h3></div><span class="text-[10px] opacity-35">01</span></div>
+            <div class="mockup-stage h-[420px] sm:h-[480px] rounded-none rounded-t-[0]">
+              <div class="door absolute left-[8%] right-[8%] top-[7%] bottom-0 rounded-t-[1.5rem]"></div>
+              <div class="absolute left-[20%] right-[20%] top-[22%] h-[44%] rounded-[1.2rem] glass flex items-center justify-center p-10 mockup-float">
+                <img class="w-full max-w-[270px]" src="" data-mock="with" alt="Nurtured Psychology logo on clinic signage" />
+              </div>
+              <div class="absolute bottom-7 left-0 right-0 text-center text-[9px] tracking-[.22em] uppercase text-[#172250]/35">A quiet first impression</div>
+            </div>
+          </article>
+
+          <article class="mockup-card reveal lg:col-span-5 rounded-[2rem] border border-black/5 bg-[#F6F4F0] overflow-hidden" style="transition-delay:.08s">
+            <div class="p-6 sm:p-8 flex items-center justify-between"><div><div class="mockup-label">Client welcome</div><h3 class="mt-2 font-semibold">Appointment card</h3></div><span class="text-[10px] opacity-35">02</span></div>
+            <div class="mockup-stage h-[420px] sm:h-[480px] rounded-none rounded-t-[0] flex items-center justify-center">
+              <div class="card-paper mockup-float w-[72%] max-w-[320px] aspect-[1.58] rounded-[1rem] p-7 sm:p-9 flex flex-col justify-between rotate-[-4deg]">
+                <img class="w-[75%]" src="" data-mock="without" alt="Nurtured Psychology logo on appointment card" />
+                <div class="flex justify-between text-[8px] tracking-[.18em] uppercase text-[#172250]/40"><span>Appointment</span><span>Wellbeing</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="mockup-card reveal lg:col-span-5 rounded-[2rem] border border-black/5 bg-[#172250] overflow-hidden text-white" style="transition-delay:.12s">
+            <div class="p-6 sm:p-8 flex items-center justify-between"><div><div class="text-[9px] tracking-[.2em] uppercase text-white/40">Professional stationery</div><h3 class="mt-2 font-semibold">Letterhead &amp; correspondence</h3></div><span class="text-[10px] text-white/30">03</span></div>
+            <div class="mockup-stage h-[430px] sm:h-[480px] rounded-none rounded-t-[0] flex items-center justify-center bg-[#d9d5cf]">
+              <div class="paper mockup-float w-[66%] max-w-[290px] aspect-[.707] p-7 sm:p-9 rotate-[3deg]">
+                <img class="w-[72%]" src="" data-mock="with" alt="Nurtured Psychology logo on letterhead" />
+                <div class="mt-12 space-y-2 opacity-15"><div class="h-1 rounded bg-[#172250] w-full"></div><div class="h-1 rounded bg-[#172250] w-11/12"></div><div class="h-1 rounded bg-[#172250] w-10/12"></div><div class="h-1 rounded bg-[#172250] w-8/12"></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="mockup-card reveal lg:col-span-7 rounded-[2rem] border border-black/5 bg-[#F6F4F0] overflow-hidden" style="transition-delay:.16s">
+            <div class="p-6 sm:p-8 flex items-center justify-between"><div><div class="mockup-label">Digital wellbeing journey</div><h3 class="mt-2 font-semibold">Website &amp; mobile experience</h3></div><span class="text-[10px] opacity-35">04</span></div>
+            <div class="mockup-stage h-[430px] sm:h-[480px] flex items-center justify-center gap-5 sm:gap-12 px-5">
+              <div class="device mockup-float w-[150px] sm:w-[190px] rotate-[-8deg]"><div class="device-screen aspect-[.48] p-4 sm:p-5"><img class="w-[86%] mt-5" src="" data-mock="with" alt="Nurtured Psychology website logo" /><div class="mt-9 h-2 rounded-full bg-[#172250]/10 w-10/12"></div><div class="mt-3 h-2 rounded-full bg-[#172250]/7 w-8/12"></div><div class="mt-7 rounded-2xl bg-[#172250] h-24 flex items-end p-3"><span class="text-[7px] text-white/60 tracking-[.12em] uppercase">A space to grow</span></div></div></div>
+              <div class="device mockup-float w-[170px] sm:w-[215px] rotate-[6deg] hidden sm:block" style="transition-delay:.1s"><div class="device-screen aspect-[.48] p-5"><div class="text-[7px] tracking-[.15em] uppercase text-[#AB3E5A]">Nurtured Psychology</div><div class="mt-5 font-serif text-xl leading-tight text-[#172250]">Support for a<br>healthier mind.</div><div class="mt-4 h-28 rounded-2xl bg-[#AB3E5A]/12"></div><div class="mt-4 rounded-full bg-[#AB3E5A] text-white text-[7px] text-center py-2">Begin your journey</div></div></div>
+            </div>
+          </article>
+
+          <article class="mockup-card reveal lg:col-span-4 rounded-[2rem] border border-black/5 bg-[#F6F4F0] overflow-hidden" style="transition-delay:.2s">
+            <div class="p-6 sm:p-8 flex items-center justify-between"><div><div class="mockup-label">Social presence</div><h3 class="mt-2 font-semibold">A calm digital voice</h3></div><span class="text-[10px] opacity-35">05</span></div>
+            <div class="mockup-stage h-[390px] sm:h-[430px] flex items-center justify-center p-7">
+              <div class="paper mockup-float w-[78%] max-w-[280px] aspect-square rounded-[1.3rem] p-7 flex flex-col justify-between rotate-[2deg]">
+                <img class="w-[78%]" src="" data-mock="without" alt="Nurtured Psychology social media application" />
+                <div><div class="text-[11px] font-serif leading-5 text-[#172250]">A little space can<br>make room for change.</div><div class="mt-4 text-[7px] tracking-[.16em] uppercase text-[#AB3E5A]">Nurturing wellbeing</div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="mockup-card reveal lg:col-span-4 rounded-[2rem] border border-black/5 bg-[#F6F4F0] overflow-hidden" style="transition-delay:.24s">
+            <div class="p-6 sm:p-8 flex items-center justify-between"><div><div class="mockup-label">Practice essentials</div><h3 class="mt-2 font-semibold">Notebook &amp; client materials</h3></div><span class="text-[10px] opacity-35">06</span></div>
+            <div class="mockup-stage h-[390px] sm:h-[430px] flex items-center justify-center">
+              <div class="fabric absolute inset-0 opacity-70"></div>
+              <div class="absolute w-[72%] max-w-[260px] aspect-[.74] rounded-[1.2rem] bg-[#172250] mockup-float rotate-[-7deg] shadow-2xl flex items-center justify-center p-10">
+                <div class="absolute inset-3 rounded-[.9rem] border border-white/10"></div><img class="relative w-[76%]" src="" data-mock="white-without" alt="Nurtured Psychology logo on navy notebook" />
+              </div>
+              <div class="absolute w-[55%] max-w-[200px] aspect-[.72] rounded-[1rem] bg-[#AB3E5A] mockup-float rotate-[10deg] translate-x-[28%] translate-y-[12%] shadow-2xl flex items-center justify-center p-8 opacity-95"><img class="relative w-[72%]" src="" data-mock="white-without" alt="Nurtured Psychology logo on berry notebook" /></div>
+            </div>
+          </article>
+
+          <article class="mockup-card reveal lg:col-span-4 rounded-[2rem] border border-black/5 bg-[#172250] overflow-hidden text-white" style="transition-delay:.28s">
+            <div class="p-6 sm:p-8 flex items-center justify-between"><div><div class="text-[9px] tracking-[.2em] uppercase text-white/40">Brand experience</div><h3 class="mt-2 font-semibold">The overall impression</h3></div><span class="text-[10px] text-white/30">07</span></div>
+            <div class="mockup-stage h-[390px] sm:h-[430px] rounded-none rounded-t-[0] bg-[#10111A] flex items-center justify-center p-8">
+              <div class="absolute inset-0 opacity-70" style="background:radial-gradient(circle at 30% 25%,rgba(171,62,90,.20),transparent 35%),radial-gradient(circle at 75% 75%,rgba(255,255,255,.08),transparent 35%)"></div>
+              <div class="relative text-center mockup-float"><img class="w-[250px] sm:w-[290px] mx-auto" src="" data-mock="white-with" alt="Nurtured Psychology white logo brand experience" /><div class="mt-7 text-[8px] tracking-[.28em] uppercase text-white/35">Empowering minds · Nurturing wellbeing</div></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="reveal mt-8 rounded-[2rem] border border-[#AB3E5A]/15 bg-[#AB3E5A]/[.045] p-7 sm:p-10">
+          <div class="grid md:grid-cols-[1fr_auto] gap-8 items-center"><div><div class="text-[9px] tracking-[.22em] uppercase text-[#AB3E5A]">Application principle</div><h3 class="mt-2 font-display text-2xl sm:text-3xl">Warmth without losing professional credibility.</h3><p class="mt-3 text-sm leading-6 opacity-55 max-w-2xl">Across physical and digital touchpoints, the identity keeps the same quiet confidence: clear hierarchy, generous space and a restrained palette. This makes the practice feel welcoming while preserving the trust and professionalism expected in a psychology and wellbeing setting.</p></div><a href="#showcase" class="justify-self-start md:justify-self-end rounded-full bg-[#172250] text-white px-5 py-3 text-[10px] tracking-[.15em] uppercase hover:-translate-y-0.5 transition">See logo backgrounds →</a></div>
+        </div>
+      </div>
+    </section>
+
     <section id="colour" class="py-28 sm:py-36 bg-[#F6F4F0]">
       <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
         <div class="grid lg:grid-cols-[.75fr_1.25fr] gap-16 lg:gap-24">
-          <div class="reveal"><div class="text-[10px] tracking-[.28em] uppercase font-semibold text-[#AB3E5A] mb-5">04 / Colour</div><h2 class="font-display text-4xl sm:text-5xl tracking-[-.035em]">Two colours.<br><span class="opacity-45">One calm system.</span></h2><p class="mt-6 text-sm leading-7 opacity-60 max-w-sm">The palette balances a grounded navy with a warmer berry accent. Together they create a visual language that feels professional, reassuring and distinctive. Tap a swatch to copy its HEX value.</p></div>
+          <div class="reveal"><div class="text-[10px] tracking-[.28em] uppercase font-semibold text-[#AB3E5A] mb-5">05 / Colour</div><h2 class="font-display text-4xl sm:text-5xl tracking-[-.035em]">Two colours.<br><span class="opacity-45">One calm system.</span></h2><p class="mt-6 text-sm leading-7 opacity-60 max-w-sm">The palette balances a grounded navy with a warmer berry accent. Together they create a visual language that feels professional, reassuring and distinctive. Tap a swatch to copy its HEX value.</p></div>
           <div class="reveal grid sm:grid-cols-2 gap-5" style="transition-delay:.1s">
             <div class="swatch rounded-[2rem] overflow-hidden border border-black/5 bg-white shadow-[0_18px_55px_rgba(23,34,80,.05)]"><button class="w-full h-52 bg-[#172250] flex items-end p-6 text-left" data-copy="#172250" aria-label="Copy navy HEX value"><span class="text-white text-xs tracking-[.18em] uppercase">Copy colour</span></button><div class="p-6"><div class="text-[9px] tracking-[.2em] uppercase opacity-40">Navy</div><div class="mt-2 text-2xl font-semibold tracking-tight">#172250</div><div class="mt-2 text-xs opacity-45">Primary brand colour</div></div></div>
             <div class="swatch rounded-[2rem] overflow-hidden border border-black/5 bg-white shadow-[0_18px_55px_rgba(23,34,80,.05)]"><button class="w-full h-52 bg-[#AB3E5A] flex items-end p-6 text-left" data-copy="#AB3E5A" aria-label="Copy berry HEX value"><span class="text-white text-xs tracking-[.18em] uppercase">Copy colour</span></button><div class="p-6"><div class="text-[9px] tracking-[.2em] uppercase opacity-40">Berry</div><div class="mt-2 text-2xl font-semibold tracking-tight">#AB3E5A</div><div class="mt-2 text-xs opacity-45">Accent brand colour</div></div></div>
@@ -168,14 +268,14 @@
     <section class="py-28 sm:py-36 bg-[#172250] text-white">
       <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12">
         <div class="reveal grid lg:grid-cols-[1fr_.9fr] gap-16 items-center">
-          <div><div class="text-[10px] tracking-[.28em] uppercase font-semibold text-[#AB3E5A] mb-5">05 / Design rationale</div><h2 class="font-display text-4xl sm:text-5xl tracking-[-.035em]">Built for trust.<br><span class="text-white/35">Designed for connection.</span></h2><p class="mt-7 text-sm leading-7 text-white/60 max-w-xl">The botanical form gives the identity an immediate association with growth, care and natural development. The refined typography brings structure and professionalism, while the optional byline reinforces the brand promise: “Empowering minds. Nurturing wellbeing.” The result is an identity that can feel warm and human without losing clinical credibility.</p></div>
+          <div><div class="text-[10px] tracking-[.28em] uppercase font-semibold text-[#AB3E5A] mb-5">06 / Design rationale</div><h2 class="font-display text-4xl sm:text-5xl tracking-[-.035em]">Built for trust.<br><span class="text-white/35">Designed for connection.</span></h2><p class="mt-7 text-sm leading-7 text-white/60 max-w-xl">The botanical form gives the identity an immediate association with growth, care and natural development. The refined typography brings structure and professionalism, while the optional byline reinforces the brand promise: “Empowering minds. Nurturing wellbeing.” The result is an identity that can feel warm and human without losing clinical credibility.</p></div>
           <div class="rounded-[2rem] border border-white/10 bg-white/5 p-7 sm:p-9 backdrop-blur"><div class="flex items-center gap-4"><div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center"><img id="markLogo" class="w-8" alt="Nurtured Psychology plant mark" /></div><div><div class="text-sm font-semibold">Brand-ready logo assets</div><div class="text-xs text-white/40 mt-1">Transparent background · scalable vector artwork</div></div></div><div class="h-px bg-white/10 my-7"></div><div class="space-y-4 text-xs"><div class="flex justify-between gap-6"><span class="text-white/40">Primary signature</span><span>nurtured / PSYCHOLOGY</span></div><div class="flex justify-between gap-6"><span class="text-white/40">Byline</span><span>Optional</span></div><div class="flex justify-between gap-6"><span class="text-white/40">Brand palette</span><span>#172250 · #AB3E5A</span></div><div class="flex justify-between gap-6"><span class="text-white/40">Format</span><span>SVG vector</span></div></div></div>
         </div>
       </div>
     </section>
 
     <footer class="bg-white py-10">
-      <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center"><div><div class="text-[10px] tracking-[.24em] uppercase font-semibold">Nurtured Psychology</div><div class="mt-1 text-xs opacity-40">Logo presentation · identity system</div></div><a href="#top" class="text-[10px] tracking-[.18em] uppercase opacity-45 hover:opacity-100 transition">Back to top ↑</a></div>
+      <div class="max-w-6xl mx-auto px-6 sm:px-10 lg:px-12 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center"><div><div class="text-[10px] tracking-[.24em] uppercase font-semibold">Nurtured Psychology</div><div class="mt-1 text-xs opacity-40">Brand identity presentation · logo &amp; applications</div></div><a href="#top" class="text-[10px] tracking-[.18em] uppercase opacity-45 hover:opacity-100 transition">Back to top ↑</a></div>
     </footer>
   </main>
 
@@ -225,6 +325,16 @@
     document.getElementById('withoutLogo').src = svgData(assets.withoutByline);
     document.getElementById('showcaseLogo').src = svgData(assets.withByline);
     document.getElementById('markLogo').src = svgData(whiteAssets.mark);
+    document.querySelectorAll('[data-mock]').forEach(el => {
+      const map = {
+        with: assets.withByline,
+        without: assets.withoutByline,
+        'white-with': whiteAssets.withByline,
+        'white-without': whiteAssets.withoutByline
+      };
+      el.src = svgData(map[el.dataset.mock] || assets.withoutByline);
+    });
+
 
     const showcase = document.getElementById('showcaseCard');
     const label = document.getElementById('showcaseLabel');
